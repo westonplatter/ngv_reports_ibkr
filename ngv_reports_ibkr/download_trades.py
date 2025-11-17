@@ -19,7 +19,7 @@ def process_report_discord(report: CustomFlexReport, discord_webhook_url: str):
     """
     Process report through discord output adapter
 
-    .. deprecated::
+    .. deprecated:: 0.2.0
         This function is deprecated and will be removed in a future version.
         Discord integration is no longer supported.
     """
@@ -114,8 +114,9 @@ def execute_discord_for_accounts(
     """
     Execute the discord notifications process for accounts
 
-    .. deprecated::
+    .. deprecated:: 0.2.0
         This function is deprecated and will be removed in a future version.
+        Discord integration is no longer supported.
 
     Args:
         report_name (str): the report to execute. Expected options: daily, weekly, annual

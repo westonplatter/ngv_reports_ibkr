@@ -39,7 +39,7 @@ def get_discord_webhook_url(configs: Dict) -> str:
     """
     Returns the discord portfolios webhook
 
-    .. deprecated::
+    .. deprecated:: 0.2.0
         This function is deprecated and will be removed in a future version.
         Discord integration is no longer supported.
 
