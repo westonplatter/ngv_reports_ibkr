@@ -1,23 +1,23 @@
 API Reference
 =============
 
-.. automodule:: ngv_ibkr_reports.config_helpers
+.. automodule:: ngv_reports_ibkr.config_helpers
     :members:
 
-.. autoclass:: ngv_ibkr_reports.adapters.ReportOutputAdapterCSV
+.. autoclass:: ngv_reports_ibkr.adapters.ReportOutputAdapterCSV
     :members:
 
-.. autoclass:: ngv_ibkr_reports.adapters.ReportOutputAdapterPandas
+.. autoclass:: ngv_reports_ibkr.adapters.ReportOutputAdapterPandas
     :members:
 
-.. autoclass:: ngv_ibkr_reports.adapters.ReportOutputAdapterDiscord
+.. autoclass:: ngv_reports_ibkr.adapters.ReportOutputAdapterDiscord
     :members:
 
-.. autoclass:: ngv_ibkr_reports.custom_flex_report.CustomFlexReport
+.. autoclass:: ngv_reports_ibkr.custom_flex_report.CustomFlexReport
     :members:
 
-.. automodule:: ngv_ibkr_reports.download_trades
+.. automodule:: ngv_reports_ibkr.download_trades
     :members:
 
-.. automodule:: ngv_ibkr_reports.transforms
+.. automodule:: ngv_reports_ibkr.transforms
     :members:

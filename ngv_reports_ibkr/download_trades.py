@@ -3,16 +3,16 @@ import warnings
 
 from loguru import logger
 
-from ngv_ibkr_reports.adapters import (
+from ngv_reports_ibkr.adapters import (
     ReportOutputAdapterCSV,
     ReportOutputAdapterDiscord,
 )
-from ngv_ibkr_reports.config_helpers import (
+from ngv_reports_ibkr.config_helpers import (
     get_config,
     get_ib_json,
     get_discord_webhook_url,
 )
-from ngv_ibkr_reports.custom_flex_report import CustomFlexReport
+from ngv_reports_ibkr.custom_flex_report import CustomFlexReport
 
 
 def process_report_discord(report: CustomFlexReport, discord_webhook_url: str):
