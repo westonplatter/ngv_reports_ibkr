@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import warnings
 
 from loguru import logger
 import pandas as pd
@@ -169,6 +170,13 @@ class ReportOutputAdapterPandas(BaseModel):
     
         
 class ReportOutputAdapterDiscord(BaseModel):
+    """
+    Discord output adapter for IBKR reports.
+
+    .. deprecated::
+        This class is deprecated and will be removed in a future version.
+        Discord integration is no longer supported.
+    """
     class Config:
         arbitrary_types_allowed = True
 
@@ -181,19 +189,49 @@ class ReportOutputAdapterDiscord(BaseModel):
     def public_account_id(self):
         """
         Only publish the first 3 digits of account
+
+        .. deprecated::
+            This property is deprecated and will be removed in a future version.
+            Discord integration is no longer supported.
         """
+        warnings.warn(
+            "ReportOutputAdapterDiscord.public_account_id is deprecated and will be removed in a future version. "
+            "Discord integration is no longer supported.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return self.account_id[0:4]
 
     def put_notifications(self):
         """
         Main method called. Calls into specific functions
+
+        .. deprecated::
+            This method is deprecated and will be removed in a future version.
+            Discord integration is no longer supported.
         """
+        warnings.warn(
+            "ReportOutputAdapterDiscord.put_notifications is deprecated and will be removed in a future version. "
+            "Discord integration is no longer supported.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         self.put_expiry_notifications()
 
     def put_expiry_notifications(self):
         """
         Notify discord with expiring positions in X days
+
+        .. deprecated::
+            This method is deprecated and will be removed in a future version.
+            Discord integration is no longer supported.
         """
+        warnings.warn(
+            "ReportOutputAdapterDiscord.put_expiry_notifications is deprecated and will be removed in a future version. "
+            "Discord integration is no longer supported.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         expiring_positions = self._get_expiring_positions(
             within_x_days=self.expiring_positions_within_x_days
         )
@@ -217,7 +255,18 @@ class ReportOutputAdapterDiscord(BaseModel):
     def _get_expiring_positions(self, within_x_days: int) -> pd.DataFrame:
         """
         Among open positions, get expiring positions within X days
+
+        .. deprecated::
+            This method is deprecated and will be removed in a future version.
+            Discord integration is no longer supported.
         """
+        warnings.warn(
+            "ReportOutputAdapterDiscord._get_expiring_positions is deprecated and will be removed in a future version. "
+            "Discord integration is no longer supported.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
         df = self.report.open_positions_by_account_id(self.account_id)
 
         # get latest positions

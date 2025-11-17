@@ -1,4 +1,5 @@
 import json
+import warnings
 from typing import Dict
 
 from dotenv import dotenv_values
@@ -38,10 +39,20 @@ def get_discord_webhook_url(configs: Dict) -> str:
     """
     Returns the discord portfolios webhook
 
+    .. deprecated::
+        This function is deprecated and will be removed in a future version.
+        Discord integration is no longer supported.
+
     Args:
         configs (Dict): env file contents
 
     Returns:
         str: discord webhook url
     """
+    warnings.warn(
+        "get_discord_webhook_url is deprecated and will be removed in a future version. "
+        "Discord integration is no longer supported.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return configs["PORTFOLIOS_DISCORD_WEBHOOK_URL"]
