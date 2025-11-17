@@ -1,4 +1,4 @@
-[![Tests](https://github.com/westonplatter/ngv-ibkr-reports/actions/workflows/ci.yml/badge.svg)](https://github.com/westonplatter/ngv-ibkr-reports/actions/workflows/ci.yml) [![Docs](https://github.com/westonplatter/ngv-ibkr-reports/actions/workflows/docs.yml/badge.svg)](https://github.com/westonplatter/ngv-ibkr-reports/actions/workflows/docs.yml)
+[![Tests](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/ci.yml/badge.svg)](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/ci.yml) [![Docs](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/docs.yml/badge.svg)](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/docs.yml)
 
 # NextGenVol IBKR Reports
 Python package to generate reports from Interactive Brokers.
@@ -8,12 +8,12 @@ Python package to generate reports from Interactive Brokers.
 ## Installing
 Install the module from github,
 ```bash
-pip install git+https://github.com/westonplatter/ngv-ibkr-reports.git@main
+pip install git+https://github.com/westonplatter/ngv-reports-ibkr.git@main
 ```
 
 Or add it to your `requirements.txt` file,
 ```bash
-ngv_ibkr_reports @ git+https://github.com/westonplatter/ngv-ibkr-reports.git@main
+ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv-reports-ibkr.git@main
 ```
 
 ## Getting Started
@@ -47,8 +47,8 @@ ngv_ibkr_reports @ git+https://github.com/westonplatter/ngv-ibkr-reports.git@mai
 2. Clone the repo and install it with uv
 
     ```bash
-    git clone git@github.com:westonplatter/ngv-ibkr-reports.git
-    cd ngv-ibkr-reports
+    git clone git@github.com:westonplatter/ngv-reports-ibkr.git
+    cd ngv-reports-ibkr
 
     # Install uv if you haven't already
     # See: https://docs.astral.sh/uv/getting-started/installation/
@@ -75,7 +75,7 @@ ngv_ibkr_reports @ git+https://github.com/westonplatter/ngv-ibkr-reports.git@mai
 4. Run the download command
     ```bash
     # note that `report-name` matches up with annual key in the .env file
-    uv run python -c "from ngv_ibkr_reports.download_trades import execute_csv_for_accounts; execute_csv_for_accounts('annual', cache=True)"
+    uv run python -c "from ngv_reports_ibkr.download_trades import execute_csv_for_accounts; execute_csv_for_accounts('annual', cache=True)"
     ```
 
 5. See files in the `data` directory

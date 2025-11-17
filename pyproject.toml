@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "ngv_ibkr_reports"
+name = "ngv_reports_ibkr"
 description="IBKR report data via ib_async"
 authors = [
     {name = "Weston Platter", email = "westonplatter+finx@gmail.com"},
@@ -26,17 +26,17 @@ readme = "README.md"
 
 
 [tool.setuptools.dynamic]
-version = {attr = "ngv_ibkr_reports.VERSION"}
+version = {attr = "ngv_reports_ibkr.VERSION"}
 
 
 [tool.setuptools.packages.find]
-include = ['ngv_ibkr_reports*']
+include = ['ngv_reports_ibkr*']
  
 
 [project.urls]
-Homepage = "https://github.com/westonplatter/ngv-ibkr-reports"
-"Issue Tracker" = "https://github.com/westonplatter/ngv-ibkr-reports/issues"
-"Source Code" = "https://github.com/westonplatter/ngv-ibkr-reports"
+Homepage = "https://github.com/westonplatter/ngv-reports-ibkr"
+"Issue Tracker" = "https://github.com/westonplatter/ngv-reports-ibkr/issues"
+"Source Code" = "https://github.com/westonplatter/ngv-reports-ibkr"
 
 
 [project.optional-dependencies]
