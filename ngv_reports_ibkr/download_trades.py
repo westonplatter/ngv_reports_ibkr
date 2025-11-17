@@ -18,7 +18,17 @@ from ngv_reports_ibkr.custom_flex_report import CustomFlexReport
 def process_report_discord(report: CustomFlexReport, discord_webhook_url: str):
     """
     Process report through discord output adapter
+
+    .. deprecated::
+        This function is deprecated and will be removed in a future version.
+        Discord integration is no longer supported.
     """
+    warnings.warn(
+        "process_report_discord is deprecated and will be removed in a future version. "
+        "Discord integration is no longer supported.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     for account_id in report.account_ids():
         output_adapter = ReportOutputAdapterDiscord(
             account_id=account_id,
