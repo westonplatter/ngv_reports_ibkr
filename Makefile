@@ -23,10 +23,7 @@ test:
 #
 # release
 #
-release: release.applytag release.check release.build release.upload
-
-release.applytag:
-	echo $$(git describe --tags --abbrev=0 ) > ngv_reports_ibkr/version.txt
+release: release.check release.build release.upload
 
 release.check:
 	pre-commit run -a

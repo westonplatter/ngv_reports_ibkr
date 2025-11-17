@@ -25,8 +25,7 @@ dynamic = ["version"]
 readme = "README.md"
 
 
-[tool.setuptools.dynamic]
-version = {attr = "ngv_reports_ibkr.VERSION"}
+[tool.setuptools_scm]
 
 
 [tool.setuptools.packages.find]
