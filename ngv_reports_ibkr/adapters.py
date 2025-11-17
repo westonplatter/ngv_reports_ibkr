@@ -158,14 +158,14 @@ class ReportOutputAdapterPandas(BaseModel):
 
         Args:
             aid (str): account id
-        
+
         Returns:
             dict: dict of dfs
         """
         return {
-            "trades": self.gen_trades_df(aid),
-            "closed_trades": self.gen_closed_trades_df(aid),
-            "open_positions": self.gen_open_positions(aid),
+            "trades": self.put_trades(aid),
+            "closed_trades": self.put_close_trades(aid),
+            "open_positions": self.put_open_positions(aid),
         }
     
         
@@ -173,7 +173,7 @@ class ReportOutputAdapterDiscord(BaseModel):
     """
     Discord output adapter for IBKR reports.
 
-    .. deprecated::
+    .. deprecated:: 0.2.0
         This class is deprecated and will be removed in a future version.
         Discord integration is no longer supported.
     """
@@ -190,7 +190,7 @@ class ReportOutputAdapterDiscord(BaseModel):
         """
         Only publish the first 3 digits of account
 
-        .. deprecated::
+        .. deprecated:: 0.2.0
             This property is deprecated and will be removed in a future version.
             Discord integration is no longer supported.
         """
@@ -206,7 +206,7 @@ class ReportOutputAdapterDiscord(BaseModel):
         """
         Main method called. Calls into specific functions
 
-        .. deprecated::
+        .. deprecated:: 0.2.0
             This method is deprecated and will be removed in a future version.
             Discord integration is no longer supported.
         """
@@ -222,7 +222,7 @@ class ReportOutputAdapterDiscord(BaseModel):
         """
         Notify discord with expiring positions in X days
 
-        .. deprecated::
+        .. deprecated:: 0.2.0
             This method is deprecated and will be removed in a future version.
             Discord integration is no longer supported.
         """
@@ -256,7 +256,7 @@ class ReportOutputAdapterDiscord(BaseModel):
         """
         Among open positions, get expiring positions within X days
 
-        .. deprecated::
+        .. deprecated:: 0.2.0
             This method is deprecated and will be removed in a future version.
             Discord integration is no longer supported.
         """
