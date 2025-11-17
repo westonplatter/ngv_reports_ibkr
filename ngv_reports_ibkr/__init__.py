@@ -1,1 +1,1 @@
-VERSION = "0.1.0"
+# Version is managed by setuptools-scm via pyproject.toml
