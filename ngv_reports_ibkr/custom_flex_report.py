@@ -3,7 +3,7 @@ from typing import List
 import pandas as pd
 from ib_async.flexreport import FlexReport
 
-from ngv_ibkr_reports.transforms import parse_date_series, parse_datetime_series
+from ngv_reports_ibkr.transforms import parse_date_series, parse_datetime_series
 
 
 class CustomFlexReport(FlexReport):
