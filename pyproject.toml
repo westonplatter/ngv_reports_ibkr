@@ -33,9 +33,9 @@ include = ['ngv_reports_ibkr*']
  
 
 [project.urls]
-Homepage = "https://github.com/westonplatter/ngv-reports-ibkr"
-"Issue Tracker" = "https://github.com/westonplatter/ngv-reports-ibkr/issues"
-"Source Code" = "https://github.com/westonplatter/ngv-reports-ibkr"
+Homepage = "https://github.com/westonplatter/ngv_reports_ibkr"
+"Issue Tracker" = "https://github.com/westonplatter/ngv_reports_ibkr/issues"
+"Source Code" = "https://github.com/westonplatter/ngv_reports_ibkr"
 
 
 [project.optional-dependencies]

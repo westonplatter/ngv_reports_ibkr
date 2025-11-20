@@ -1,21 +1,21 @@
-[![Tests](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/ci.yml/badge.svg)](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/ci.yml) [![Docs](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/docs.yml/badge.svg)](https://github.com/westonplatter/ngv-reports-ibkr/actions/workflows/docs.yml)
+[![Tests](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/ci.yml/badge.svg)](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/ci.yml) [![Docs](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/docs.yml/badge.svg)](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/docs.yml)
 
 # NextGenVol IBKR Reports
 Python package to generate reports from Interactive Brokers.
 
-**[📚 Documentation](https://westonplatter.github.io/ngv-reports-ibkr/)** | [API Reference](https://westonplatter.github.io/ngv-reports-ibkr/api.html)
+**[📚 Documentation](https://westonplatter.github.io/ngv_reports_ibkr/)** | [API Reference](https://westonplatter.github.io/ngv_reports_ibkr/api.html)
 
 > **Disclaimer**: This project is not affiliated with or endorsed by Interactive Brokers. It is an independent tool for processing and analyzing Flex Report data from Interactive Brokers' API.
 
 ## Installing
 Install the module from github,
 ```bash
-pip install git+https://github.com/westonplatter/ngv-reports-ibkr.git@main
+pip install git+https://github.com/westonplatter/ngv_reports_ibkr.git@main
 ```
 
 Or add it to your `requirements.txt` file,
 ```bash
-ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv-reports-ibkr.git@main
+ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@main
 ```
 
 ## Getting Started
@@ -49,8 +49,8 @@ ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv-reports-ibkr.git@mai
 2. Clone the repo and install it with uv
 
     ```bash
-    git clone git@github.com:westonplatter/ngv-reports-ibkr.git
-    cd ngv-reports-ibkr
+    git clone git@github.com:westonplatter/ngv_reports_ibkr.git
+    cd ngv_reports_ibkr
 
     # Install uv if you haven't already
     # See: https://docs.astral.sh/uv/getting-started/installation/
