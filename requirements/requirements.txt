@@ -1,8 +1,0 @@
-ib-async
-loguru
-pandas
-numpy
-pydantic
-python-dotenv
-pytz
-requests
