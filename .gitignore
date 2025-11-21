@@ -77,6 +77,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+.ipynb_checkpoints/*
 
 # IPython
 profile_default/
@@ -121,6 +122,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env*
 .venv
 env/
 venv/
@@ -152,34 +154,69 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# --- custom stuff ---
+# =============================================================================
+# Project-specific
+# =============================================================================
 
-# don't save jupyter notebook checkpoints
-.ipynb_checkpoints/*
-
-# let each dev decide on their conventions
+# Python version management (let each dev decide)
 .python-version
 
-# ignore private files
-weston*
-*.csv
+# IDE settings
+.vscode
+.spyderproject
+.spyproject
 
+# macOS
 .DS_Store
 
-# don't save .env files
-.env*
-
-# don't save data files
-data
-!data/.gitkeep
-*.xml
-*.csv
-
-# let each dev decide on their conventions
+# Pre-commit hooks (let each dev decide)
 .pre-commit-config.yaml
 
-# # let each dev decide on their conventions
-# .python-version
+# Private/personal files
+weston*
+.ipy*
+example*
 
-# ignore the vscode settings
-.vscode
+# Data files (IBKR reports, exports, caches)
+data/*
+!data/.gitkeep
+*.csv
+*.xml
+*.gz
+trades*.json
+data_U*.json
+
+# Image files
+*.png
+*.HEIC
+
+# Diagrams
+*.drawio.bkp
+
+# Database files
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+
+# Claude Code / AI tooling
+.claude/settings.local.json
+.mcp.json
+claude-flow.config.json
+.swarm/
+.hive-mind/
+.claude-flow/
+memory/
+coordination/
+memory/claude-flow-data.json
+memory/sessions/*
+!memory/sessions/README.md
+memory/agents/*
+!memory/agents/README.md
+coordination/memory_bank/*
+coordination/subtasks/*
+coordination/orchestration/*
+claude-flow
+hive-mind-prompt-*.txt

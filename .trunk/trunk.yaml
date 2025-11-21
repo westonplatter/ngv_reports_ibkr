@@ -1,0 +1,55 @@
+version: 0.1
+cli:
+  version: 1.22.5
+
+plugins:
+  sources:
+    - id: trunk
+      ref: v1.6.2
+      uri: https://github.com/trunk-io/plugins
+
+lint:
+  definitions:
+    - name: black
+      commands:
+        - name: format
+          run: black --line-length 160 ${target}
+  enabled:
+    # - bandit@1.7.5
+    # - trivy@0.50.1
+    # - ruff@0.6.7
+    - actionlint@1.7.2
+    - git-diff-check
+    - markdownlint@0.42.0
+    - osv-scanner@1.8.5
+    - prettier@3.3.3
+    - taplo@0.9.3
+    - trufflehog@3.82.2
+    - yamllint@1.35.1
+    - black@24.8.0
+    # - flake8@7.0.0
+    - gitleaks@8.19.2
+    - isort@5.13.2
+  disabled:
+    - checkov
+    - bandit
+  ignore:
+    - linters: [ruff]
+      paths:
+        - "**/*.ipynb"
+    - linters: [ALL]
+      paths:
+        - CLAUDE.md
+
+runtimes:
+  enabled:
+    - go@1.21.0
+    - node@18.12.1
+    - python@3.10.8
+
+actions:
+  enabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-fmt-pre-commit
+    - trunk-upgrade-available
