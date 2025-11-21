@@ -5,22 +5,20 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ngv_reports_ibkr"
-description="IBKR report data via ib_async"
-authors = [
-    {name = "Weston Platter", email = "westonplatter+finx@gmail.com"},
-]
+description = "IBKR report data via ib_async"
+authors = [{ name = "Weston Platter", email = "westonplatter+ngv@gmail.com" }]
 dependencies = [
-    "ib-async",
-    "loguru",
-    "pandas",
-    "numpy",
-    "pydantic",
-    "python-dotenv",
-    "pytz",
-    "requests",
+  "ib-async",
+  "loguru",
+  "pandas",
+  "numpy",
+  "pydantic",
+  "python-dotenv",
+  "pytz",
+  "requests",
 ]
 requires-python = ">=3.10"
-license = {text = "BSD-3"}
+license = { text = "BSD-3" }
 dynamic = ["version"]
 readme = "README.md"
 
@@ -30,28 +28,21 @@ readme = "README.md"
 
 [tool.setuptools.packages.find]
 include = ['ngv_reports_ibkr*']
- 
+
+[dependency-groups]
+dev = [
+  "ipykernel>=7.1.0",
+  "ipdb",
+  "matplotlib",
+  "twine",
+  "openpyxl",
+  "pytest>=7.5",
+  "nbstripout>=0.8.2",
+]
+docs = ["sphinx", "sphinx_rtd_theme", "myst_parser"]
+
 
 [project.urls]
 Homepage = "https://github.com/westonplatter/ngv_reports_ibkr"
 "Issue Tracker" = "https://github.com/westonplatter/ngv_reports_ibkr/issues"
 "Source Code" = "https://github.com/westonplatter/ngv_reports_ibkr"
-
-
-[project.optional-dependencies]
-test = [
-    "pytest",
-]
-dev = [
-    "ipdb",
-    "matplotlib",
-    "twine",
-    "openpyxl",
-    "dotenv",
-     "pytest>=7.5",
-]
-docs = [
-    "sphinx",
-    "sphinx_rtd_theme",
-    "myst_parser",
-]
