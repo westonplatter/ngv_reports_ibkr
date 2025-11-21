@@ -1,6 +1,6 @@
 # DataFrame Schema (Anonymized)
 
-> ⚠️ **Privacy Notice**: All sample values have been anonymized according to [IBKR Sample Data Anonymization Guidelines](../prompt-ibkr-sample-data.md). Account IDs, transaction IDs, dates, and other personal identifiers have been replaced with generic values. Market data (symbols, exchanges, prices) remains realistic.
+> ⚠️ **Privacy Notice**: All sample values have been anonymized according to [IBKR Sample Data Anonymization Guidelines](../prompts/prompt-ibkr-sample-data.md). Account IDs, transaction IDs, dates, and other personal identifiers have been replaced with generic values. Market data (symbols, exchanges, prices) remains realistic.
 
 ## Overview
 
