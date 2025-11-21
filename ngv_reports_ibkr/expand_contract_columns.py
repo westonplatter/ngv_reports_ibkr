@@ -24,6 +24,43 @@ def _clean_unset_value(value):
     return value
 
 
+def extract_object_attributes(obj, clean_numeric=False, exclude_attrs=None):
+    """
+    Extract data attributes from an object into a dictionary.
+
+    Args:
+        obj: Object to extract attributes from
+        clean_numeric: Apply _clean_unset_value to numeric fields
+        exclude_attrs: List of attribute names to skip
+
+    Returns:
+        Dictionary of attribute names and values
+    """
+    if obj is None:
+        return {}
+
+    exclude_attrs = exclude_attrs or []
+    data = {}
+
+    for attr_name in dir(obj):
+        # Skip dunder methods, private methods, and excluded attrs
+        if attr_name.startswith("_") or attr_name in exclude_attrs:
+            continue
+
+        # Skip callable methods
+        attr_value = getattr(obj, attr_name, None)
+        if callable(attr_value):
+            continue
+
+        # Clean numeric values if requested
+        if clean_numeric and isinstance(attr_value, (int, float)):
+            attr_value = _clean_unset_value(attr_value)
+
+        data[attr_name] = attr_value
+
+    return data
+
+
 def expand_contract_column(df: pd.DataFrame, contract_col: str = "contract") -> pd.DataFrame:
     """
     Expand ib_async contract objects into separate DataFrame columns.
@@ -90,53 +127,7 @@ def expand_order_column(df: pd.DataFrame, order_col: str = "order") -> pd.DataFr
             order_data.append({})
             continue
 
-        # TODO(weston): find a generic way to extract all attributes from an object and pass them into the data dictionary for pandas DataFrame init
-        data = {
-            # Order identifiers
-            "orderId": getattr(order, "orderId", None),
-            "permId": getattr(order, "permId", None),
-            "parentId": getattr(order, "parentId", None),
-            "clientId": getattr(order, "clientId", None),
-            # Basic order details
-            "action": getattr(order, "action", None),
-            "orderType": getattr(order, "orderType", None),
-            "totalQuantity": getattr(order, "totalQuantity", None),
-            "filledQuantity": getattr(order, "filledQuantity", None),
-            # Pricing
-            "lmtPrice": _clean_unset_value(getattr(order, "lmtPrice", None)),
-            "auxPrice": _clean_unset_value(getattr(order, "auxPrice", None)),
-            "trailStopPrice": _clean_unset_value(getattr(order, "trailStopPrice", None)),
-            "trailingPercent": _clean_unset_value(getattr(order, "trailingPercent", None)),
-            # Time in force & validity
-            "tif": getattr(order, "tif", None),
-            "goodAfterTime": getattr(order, "goodAfterTime", None),
-            "goodTillDate": getattr(order, "goodTillDate", None),
-            # Account & routing
-            "account_id": getattr(order, "account", None),
-            "openClose": getattr(order, "openClose", None),
-            "origin": getattr(order, "origin", None),
-            "outsideRth": getattr(order, "outsideRth", None),
-            # OCA (One-Cancels-All)
-            "ocaGroup": getattr(order, "ocaGroup", None),
-            "ocaType": getattr(order, "ocaType", None),
-            # Order reference
-            "orderRef": getattr(order, "orderRef", None),
-            "transmit": getattr(order, "transmit", None),
-            "hidden": getattr(order, "hidden", None),
-            "allOrNone": getattr(order, "allOrNone", None),
-            # Advanced features
-            "discretionaryAmt": _clean_unset_value(getattr(order, "discretionaryAmt", None)),
-            "triggerPrice": _clean_unset_value(getattr(order, "triggerPrice", None)),
-            "adjustedStopPrice": _clean_unset_value(getattr(order, "adjustedStopPrice", None)),
-            "adjustedStopLimitPrice": _clean_unset_value(getattr(order, "adjustedStopLimitPrice", None)),
-            # Algo trading
-            "algoStrategy": getattr(order, "algoStrategy", None),
-            "algoParams": getattr(order, "algoParams", None),
-            # Other
-            "cashQty": getattr(order, "cashQty", None),
-            "whatIf": getattr(order, "whatIf", None),
-            "notHeld": getattr(order, "notHeld", None),
-        }
+        data = extract_object_attributes(order, clean_numeric=True)
 
         order_data.append(data)
 
