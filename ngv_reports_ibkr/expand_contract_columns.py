@@ -3,8 +3,6 @@ Simple utility to expand ib_async contract objects into DataFrame columns.
 """
 
 import sys
-from typing import Any, Dict, List
-
 import pandas as pd
 from loguru import logger
 
