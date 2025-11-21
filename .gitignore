@@ -84,3 +84,5 @@ data_U*.json
 *.sqlite
 *.sqlite-journal
 *.sqlite-wal
+
+.cursor
