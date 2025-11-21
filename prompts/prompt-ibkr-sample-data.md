@@ -1,6 +1,8 @@
 # IBKR Sample Data Anonymization Prompt
 
-When creating or updating sample data documentation for IBKR (Interactive Brokers) data schemas, **always use anonymized, generic values** instead of real personal account data.
+When creating or updating sample data documentation for IBKR (Interactive Brokers)
+data schemas, **always use anonymized, generic values** instead of real personal
+account data.
 
 ## Fields to Anonymize
 
@@ -79,9 +81,9 @@ These fields should remain realistic and accurate:
 
 ## Example Patterns
 
-### Before (Example of Data to Anonymize):
+### Before (Example of Data to Anonymize)
 
-```
+```text
 accountId: U8675309
 conId: 987654321
 tradeID: 8888888888
@@ -89,9 +91,9 @@ ibExecID: 0000f1a2.b3c4d5e6.01.01
 dateTime: 2024-11-18 14:23:17-05:00
 ```
 
-### After (Anonymized):
+### After (Anonymized)
 
-```
+```text
 accountId: U1234567
 conId: 123456789
 tradeID: 1000000001
@@ -104,7 +106,8 @@ dateTime: 2025-01-15 10:30:00-05:00
 When generating schema documentation (using `export_dtypes_markdown` or similar):
 
 1. **Never include actual personal data** in sample values
-2. **Use sequential generic IDs** for different ID types (use different ranges to avoid confusion)
+2. **Use sequential generic IDs** for different ID types (use different ranges
+   to avoid confusion)
 3. **Use generic dates** (prefer January dates, avoid current month)
 4. **Preserve data types and formats** exactly
 5. **Keep market data realistic** (real symbols, exchanges, prices)
