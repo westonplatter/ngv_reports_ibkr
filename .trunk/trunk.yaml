@@ -14,6 +14,16 @@ lint:
       commands:
         - name: format
           run: black --line-length 160 ${target}
+    - name: nbstripout
+      files: [jupyter]
+      commands:
+        - name: format
+          run: uv run nbstripout --textconv ${target}
+          output: rewrite
+          success_codes: [0]
+      suggest_if: config_present
+      affects_cache:
+        - pyproject.toml
   enabled:
     # - bandit@1.7.5
     # - trivy@0.50.1
@@ -30,6 +40,7 @@ lint:
     # - flake8@7.0.0
     - gitleaks@8.19.2
     - isort@5.13.2
+    - nbstripout
   disabled:
     - checkov
     - bandit
