@@ -1,54 +1,17 @@
 """
 Tests for extract_object_attributes helper function.
 
-This test file uses realistic IBKR order data to verify the generic
-attribute extraction works correctly.
+This test file uses real ib_async Order objects to verify the generic
+attribute extraction works correctly with actual IBKR API objects.
 """
 
 import pandas as pd
+from ib_async import LimitOrder, MarketOrder
 
 from ngv_reports_ibkr.expand_contract_columns import (
-    UNSET_DOUBLE,
     expand_order_column,
     extract_object_attributes,
 )
-
-
-class MockOrder:
-    """
-    Simplified version of ib_async Order object.
-
-    Represents a real stock order for Apple (AAPL) with common attributes
-    that a Wall Street analyst would see in their trading data.
-    """
-
-    def __init__(self, order_id, action, quantity, price=None, order_type="MKT"):
-        # Order identifiers
-        self.orderId = order_id
-        self.permId = order_id * 10  # Permanent ID (typically larger)
-        self.parentId = 0
-        self.clientId = 1
-
-        # Basic order details
-        self.action = action  # "BUY" or "SELL"
-        self.orderType = order_type  # "MKT", "LMT", etc.
-        self.totalQuantity = quantity
-        self.filledQuantity = 0
-
-        # Pricing (use UNSET values when not applicable)
-        self.lmtPrice = price if price else UNSET_DOUBLE
-        self.auxPrice = UNSET_DOUBLE
-        self.trailStopPrice = UNSET_DOUBLE
-
-        # Time in force
-        self.tif = "DAY"  # Day order
-        self.account = "DU123456"
-        self.transmit = True
-        self.hidden = False
-
-    def place_order(self):
-        """Example method that should be filtered out."""
-        return f"Placing order {self.orderId}"
 
 
 def test_extract_basic_attributes():
@@ -57,7 +20,9 @@ def test_extract_basic_attributes():
 
     Real-world scenario: Market order to buy 100 shares of AAPL
     """
-    order = MockOrder(order_id=1001, action="BUY", quantity=100)
+    order = MarketOrder("BUY", 100)
+    order.orderId = 1001
+    order.account = "DU123456"
 
     data = extract_object_attributes(order, clean_numeric=False)
 
@@ -68,8 +33,9 @@ def test_extract_basic_attributes():
     assert data["totalQuantity"] == 100
     assert data["account"] == "DU123456"
 
-    # Check that methods are NOT included
-    assert "place_order" not in data
+    # Check that methods are NOT included (ib_async Order has many methods)
+    assert "dict" not in data  # dict() method
+    assert "tuple" not in data  # tuple() method
 
     # Check that private attributes are NOT included
     assert "__dict__" not in data
@@ -83,11 +49,13 @@ def test_extract_with_numeric_cleaning():
     Real-world scenario: Market order where limit price doesn't apply,
     so IBKR sets it to sys.float_info.max (UNSET_DOUBLE)
     """
-    order = MockOrder(order_id=1002, action="SELL", quantity=50)
+    order = MarketOrder("SELL", 50)
+    order.orderId = 1002
 
     data = extract_object_attributes(order, clean_numeric=True)
 
     # UNSET values should be cleaned to None
+    # ib_async sets unused numeric fields to UNSET_DOUBLE by default
     assert data["lmtPrice"] is None
     assert data["auxPrice"] is None
     assert data["trailStopPrice"] is None
@@ -103,7 +71,8 @@ def test_extract_limit_order_with_price():
 
     Real-world scenario: Limit order to buy AAPL at $150.25
     """
-    order = MockOrder(order_id=1003, action="BUY", quantity=200, price=150.25, order_type="LMT")
+    order = LimitOrder("BUY", 200, 150.25)
+    order.orderId = 1003
 
     data = extract_object_attributes(order, clean_numeric=True)
 
@@ -132,11 +101,17 @@ def test_expand_order_column_with_dataframe():
     2. Empty row (cancelled order)
     3. Sell 50 AAPL with limit price
     """
-    # Create realistic test data
+    # Create realistic test data using real ib_async Order objects
+    order1 = MarketOrder("BUY", 100)
+    order1.orderId = 2001
+
+    order2 = LimitOrder("SELL", 50, 155.75)
+    order2.orderId = 2003
+
     orders = [
-        MockOrder(order_id=2001, action="BUY", quantity=100),
+        order1,
         None,  # Cancelled or missing order
-        MockOrder(order_id=2003, action="SELL", quantity=50, price=155.75, order_type="LMT"),
+        order2,
     ]
 
     df = pd.DataFrame(
@@ -176,7 +151,11 @@ def test_exclude_specific_attributes():
     Real-world scenario: Analyst wants to exclude certain fields
     for simplified reporting.
     """
-    order = MockOrder(order_id=3001, action="BUY", quantity=75)
+    order = MarketOrder("BUY", 75)
+    order.orderId = 3001
+    order.permId = 30010
+    order.clientId = 1
+    order.parentId = 0
 
     data = extract_object_attributes(order, clean_numeric=True, exclude_attrs=["permId", "clientId", "parentId"])
 
