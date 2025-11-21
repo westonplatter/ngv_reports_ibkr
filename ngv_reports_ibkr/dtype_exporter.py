@@ -366,7 +366,7 @@ def export_dtypes_markdown_anonymized(
     with open(filepath, "w") as f:
         f.write("# DataFrame Schema (Anonymized)\n\n")
         f.write("> ⚠️ **Privacy Notice**: All sample values have been anonymized according to ")
-        f.write("[IBKR Sample Data Anonymization Guidelines](../prompt-ibkr-sample-data.md). ")
+        f.write("[IBKR Sample Data Anonymization Guidelines](../prompts/prompt-ibkr-sample-data.md). ")
         f.write("Account IDs, transaction IDs, dates, and other personal identifiers have been ")
         f.write("replaced with generic values. Market data (symbols, exchanges, prices) remains realistic.\n\n")
 
