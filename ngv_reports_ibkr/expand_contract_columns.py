@@ -4,8 +4,6 @@ Simple utility to expand ib_async contract objects into DataFrame columns.
 
 import sys
 import pandas as pd
-from loguru import logger
-
 # IBKR uses max float64 as "UNSET" indicator
 UNSET_DOUBLE = sys.float_info.max
 UNSET_INTEGER = 2147483647  # INT_MAX
