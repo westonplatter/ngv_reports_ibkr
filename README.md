@@ -1,6 +1,7 @@
 [![Tests](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/ci.yml/badge.svg)](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/ci.yml) [![Docs](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/docs.yml/badge.svg)](https://github.com/westonplatter/ngv_reports_ibkr/actions/workflows/docs.yml)
 
 # NextGenVol IBKR Reports
+
 Python package to generate reports from Interactive Brokers.
 
 **[📚 Documentation](https://westonplatter.github.io/ngv_reports_ibkr/)** | [API Reference](https://westonplatter.github.io/ngv_reports_ibkr/api.html)
@@ -8,12 +9,15 @@ Python package to generate reports from Interactive Brokers.
 > **Disclaimer**: This project is not affiliated with or endorsed by Interactive Brokers. It is an independent tool for processing and analyzing Flex Report data from Interactive Brokers' API.
 
 ## Installing
+
 Install the module from github,
+
 ```bash
 pip install git+https://github.com/westonplatter/ngv_reports_ibkr.git@main
 ```
 
 Or add it to your `requirements.txt` file,
+
 ```bash
 ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@main
 ```
@@ -21,6 +25,7 @@ ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@mai
 ## Getting Started
 
 1. Create a Flex Report in the Interactive Broker website (see this [link](https://guides.interactivebrokers.com/ap/Content/activityflex.htm))
+
    1. Query Name = AllAccounts-AnnualReport
    2. Sections to include in the report. In each, select all Options and all Fields/Columns except: `Serial Number`, `Delivery Type`, `Commodity Type`, `Fineness`, `Weight`.
       1. Account Information
@@ -45,40 +50,44 @@ ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@mai
    14. Display Account Alias in Place of Account ID = No
    15. Breakout by Day = No
 
-
 2. Clone the repo and install it with uv
 
-    ```bash
-    git clone git@github.com:westonplatter/ngv_reports_ibkr.git
-    cd ngv_reports_ibkr
+   ```bash
+   git clone git@github.com:westonplatter/ngv_reports_ibkr.git
+   cd ngv_reports_ibkr
 
-    # Install uv if you haven't already
-    # See: https://docs.astral.sh/uv/getting-started/installation/
+   # Install uv if you haven't already
+   # See: https://docs.astral.sh/uv/getting-started/installation/
 
-    # Sync dependencies (creates virtual environment and installs all dependencies)
-    uv sync
+   # Sync dependencies (creates virtual environment and installs all dependencies)
+   uv sync
 
-    # Or sync with optional dev dependencies
-    uv sync --extra dev
-    ```
+   # Or sync with optional dependency groups
+   uv sync --group dev        # Install with dev dependencies
+   uv sync --group docs       # Install with documentation dependencies
+   uv sync --all-groups       # Install with all dependency groups
+   ```
 
 3. Create your own `.env` file
-    
-    Copy the sample env file,
-    ```
-    cp .env.example .env
-    ```
 
-    Edit it with your own values,
-    ```
-    IB_JSON='{"accounts": [{"name": "account1", "flex_token": "123", "annual": <ibkr_query_id>}]}'
-    ```
+   Copy the sample env file,
+
+   ```
+   cp .env.example .env
+   ```
+
+   Edit it with your own values,
+
+   ```
+   IB_JSON='{"accounts": [{"name": "account1", "flex_token": "123", "annual": <ibkr_query_id>}]}'
+   ```
 
 4. Run the download command
-    ```bash
-    # note that `report-name` matches up with annual key in the .env file
-    uv run python -c "from ngv_reports_ibkr.download_trades import execute_csv_for_accounts; execute_csv_for_accounts('annual', cache=True)"
-    ```
+
+   ```bash
+   # note that `report-name` matches up with annual key in the .env file
+   uv run python -c "from ngv_reports_ibkr.download_trades import execute_csv_for_accounts; execute_csv_for_accounts('annual', cache=True)"
+   ```
 
 5. See files in the `data` directory
 
@@ -89,20 +98,23 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management and
 ### Essential Commands
 
 - **Install dependencies**
+
   ```bash
   uv sync                    # Install core dependencies
-  uv sync --extra dev        # Install with dev dependencies
-  uv sync --extra test       # Install with test dependencies
-  uv sync --all-extras       # Install with all optional dependencies
+  uv sync --group dev        # Install with dev dependencies
+  uv sync --group docs       # Install with documentation dependencies
+  uv sync --all-groups       # Install with all dependency groups
   ```
 
 - **Run Python code**
+
   ```bash
   uv run python <script>     # Run a Python script
   uv run pytest              # Run tests
   ```
 
 - **Manage dependencies**
+
   ```bash
   uv add <package>           # Add a package to dependencies
   uv add --dev <package>     # Add a package to dev dependencies
