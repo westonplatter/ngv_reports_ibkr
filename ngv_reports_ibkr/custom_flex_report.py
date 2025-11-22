@@ -45,18 +45,22 @@ class CustomFlexReport(FlexReport):
         Returns
         -------
         pd.DataFrame or None
-            Validated DataFrame of trades for the account, or None if no trades exist
-
-        Raises
-        ------
-        ValueError
-            If trades data fails schema validation, with context about the account
+            DataFrame of trades for the account, or None if no trades exist.
+            Returns the DataFrame even if schema validation fails (with errors logged).
 
         Notes
         -----
         This method validates the returned DataFrame against the IBKR flex report
-        trades schema to ensure data integrity. Validation failures may indicate
-        corrupted IBKR data or schema mismatches.
+        trades schema to ensure data integrity. Validation failures are logged as
+        errors but do not prevent the DataFrame from being returned. This allows
+        analysis of potentially corrupted data while alerting to schema mismatches.
+
+        Schema validation errors are logged with:
+        - Account ID context
+        - Number of validation failures
+        - Detailed error messages
+
+        If validation fails, check logs for specific column/type mismatches.
         """
         df = self.df("Trade")
         # early return if all accounts have no trades
@@ -82,7 +86,7 @@ class CustomFlexReport(FlexReport):
                 f"Found {len(e.failure_cases)} validation error(s). "
                 f"Original error: {str(e)}"
             )
-            return None
+            return df
 
     def closed_trades_by_account_id(self, account_id: str) -> pd.DataFrame:
         df = self.trades_by_account_id(account_id)
