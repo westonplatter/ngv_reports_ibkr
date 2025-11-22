@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.3.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.2.0...v0.3.0) (2025-11-22)
+
+
+### Features
+
+* add pull request template ([#26](https://github.com/westonplatter/ngv_reports_ibkr/issues/26)) ([8cc3fb5](https://github.com/westonplatter/ngv_reports_ibkr/commit/8cc3fb5ba119cc30fdbc8cec0e8a7ac0c6f4a31e))
+* **realtime:** create basic structure for reporting real time IBKR TWS trades ([#32](https://github.com/westonplatter/ngv_reports_ibkr/issues/32)) ([8fe011e](https://github.com/westonplatter/ngv_reports_ibkr/commit/8fe011e72da33129a60af403ff82b19a4d3a0ec6))
+* **schemas:** add pandera schema for trades by account ([#33](https://github.com/westonplatter/ngv_reports_ibkr/issues/33)) ([1ba017f](https://github.com/westonplatter/ngv_reports_ibkr/commit/1ba017fe82b5f946e0f70bf4853ace692e10476f))
+
+
+### Bug Fixes
+
+* **gha:** make it work with the uv group ([#34](https://github.com/westonplatter/ngv_reports_ibkr/issues/34)) ([8cd1230](https://github.com/westonplatter/ngv_reports_ibkr/commit/8cd123035506aaa9ff621acee470a9830dd2e251))
+
+
+### Documentation
+
+* review and fix documentation issues ([#31](https://github.com/westonplatter/ngv_reports_ibkr/issues/31)) ([af85e35](https://github.com/westonplatter/ngv_reports_ibkr/commit/af85e35953d100eb05fc556f85347c0cc2c91909))
+* update README ([#35](https://github.com/westonplatter/ngv_reports_ibkr/issues/35)) ([9f38ae6](https://github.com/westonplatter/ngv_reports_ibkr/commit/9f38ae6b8d5ca0004f658a89f05de5dac9259a43))
+
 ## [0.2.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/0.1.1...v0.2.0) (2025-11-14)
 
 
