@@ -24,9 +24,7 @@ license = { text = "BSD-3" }
 dynamic = ["version"]
 readme = "README.md"
 
-
 [tool.setuptools_scm]
-
 
 [tool.setuptools.packages.find]
 include = ['ngv_reports_ibkr*']
@@ -48,3 +46,7 @@ docs = ["sphinx", "sphinx_rtd_theme", "myst_parser"]
 Homepage = "https://github.com/westonplatter/ngv_reports_ibkr"
 "Issue Tracker" = "https://github.com/westonplatter/ngv_reports_ibkr/issues"
 "Source Code" = "https://github.com/westonplatter/ngv_reports_ibkr"
+
+[tool.black]
+line-length = 160
+target-version = ["py310"]

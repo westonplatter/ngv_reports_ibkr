@@ -1,75 +1,78 @@
-# DataFrame Schema
+# DataFrame Schema (Anonymized)
+
+> ⚠️ **Privacy Notice**: All sample values have been anonymized according to [IBKR Sample Data Anonymization Guidelines](../prompts/prompt-ibkr-sample-data.md). Account IDs, transaction IDs, dates, and other personal identifiers have been replaced with generic values. Market data (symbols, exchanges, prices) remains realistic.
 
 ## Overview
 
-- **Rows**: 154
-- **Columns**: 71
-- **Memory Usage**: 0.39 MB
+- **Rows**: 1,962
+- **Columns**: 72
+- **Memory Usage**: 4.99 MB
 
 ## Column Details
 
-| Column | Data Type | Null Count | Null % | Sample Values |
-|--------|-----------|------------|--------|---------------|
-| `accountId` | `object` | 0 | 0.0% | U1234567, U1234567, U1234567 |
+| Column | Data Type | Null Count | Null % | Sample Values (Anonymized) |
+|--------|-----------|------------|--------|---------------------------|
+| `accountId` | `object` | 0 | 0.0% | U1234567, U1234568, U1234569 |
 | `acctAlias` | `object` | 0 | 0.0% | , ,  |
 | `model` | `object` | 0 | 0.0% | , ,  |
 | `currency` | `object` | 0 | 0.0% | USD, USD, USD |
-| `fxRateToBase` | `int64` | 0 | 0.0% | 1, 1, 1 |
-| `assetCategory` | `object` | 0 | 0.0% | OPT, OPT, FUT |
-| `symbol` | `object` | 0 | 0.0% | BABA  251031C00185000, SMR   251031C00045000, MCLZ5 |
-| `description` | `object` | 0 | 0.0% | BABA 31OCT25 185 C, SMR 31OCT25 45 C, MCL DEC25 |
-| `conid` | `int64` | 0 | 0.0% | 123456789, 234567890, 345678901 |
-| `securityID` | `object` | 0 | 0.0% | , ,  |
-| `securityIDType` | `object` | 0 | 0.0% | , ,  |
-| `cusip` | `object` | 0 | 0.0% | , ,  |
-| `isin` | `object` | 0 | 0.0% | , ,  |
-| `listingExchange` | `object` | 0 | 0.0% | CBOE, CBOE, NYMEX |
-| `underlyingConid` | `object` | 0 | 0.0% | 111111111, 222222222, 333333333 |
-| `underlyingSymbol` | `object` | 0 | 0.0% | BABA, SMR, MCL |
-| `underlyingSecurityID` | `object` | 0 | 0.0% | US01609W1027, US67079K1007,  |
-| `underlyingListingExchange` | `object` | 0 | 0.0% | NYSE, NYSE,  |
+| `fxRateToBase` | `float64` | 0 | 0.0% | 1.0, 1.0, 1.0 |
+| `assetCategory` | `object` | 0 | 0.0% | STK, STK, STK |
+| `symbol` | `object` | 0 | 0.0% | BABA, BABA, BABA |
+| `description` | `object` | 0 | 0.0% | ALIBABA GROUP HOLDING-SP ADR, ALIBABA GROUP HOLDING-SP AD... |
+| `conid` | `int64` | 0 | 0.0% | 123456789, 234567900, 345679011 |
+| `securityID` | `object` | 0 | 0.0% | US01609W1027, US01609W1027, US01609W1027 |
+| `securityIDType` | `object` | 0 | 0.0% | ISIN, ISIN, ISIN |
+| `cusip` | `object` | 0 | 0.0% | 01609W102, 01609W102, 01609W102 |
+| `isin` | `object` | 0 | 0.0% | US01609W1027, US01609W1027, US01609W1027 |
+| `listingExchange` | `object` | 0 | 0.0% | NYSE, NYSE, NYSE |
+| `underlyingConid` | `object` | 0 | 0.0% | 456790122, 567901233, 679012344 |
+| `underlyingSymbol` | `object` | 0 | 0.0% | BABA, BABA, BABA |
+| `underlyingSecurityID` | `object` | 0 | 0.0% | , ,  |
+| `underlyingListingExchange` | `object` | 0 | 0.0% | , ,  |
 | `issuer` | `object` | 0 | 0.0% | , ,  |
-| `multiplier` | `int64` | 0 | 0.0% | 100, 100, 100 |
-| `strike` | `object` | 0 | 0.0% | 185, 45,  |
-| `expiry` | `object` | 0 | 0.0% | 2025-10-31, 2025-10-31, 2025-11-19 |
+| `multiplier` | `float64` | 0 | 0.0% | 1.0, 1.0, 1.0 |
+| `strike` | `object` | 0 | 0.0% | , ,  |
+| `expiry` | `object` | 0 | 0.0% | , ,  |
 | `tradeID` | `int64` | 0 | 0.0% | 1000000001, 1000000002, 1000000003 |
-| `putCall` | `object` | 0 | 0.0% | C, C,  |
-| `reportDate` | `object` | 0 | 0.0% | 2025-10-21, 2025-10-21, 2025-10-21 |
+| `putCall` | `object` | 0 | 0.0% | , ,  |
+| `reportDate` | `object` | 0 | 0.0% | 2025-01-15, 2025-01-16, 2025-01-17 |
 | `principalAdjustFactor` | `object` | 0 | 0.0% | , ,  |
-| `dateTime` | `datetime64[ns, US/Eastern]` | 0 | 0.0% | 2025-01-15 10:30:00-05:00, 2025-01-15 11:45:00-05:00, 202... |
-| `tradeDate` | `object` | 0 | 0.0% | 2025-01-15, 2025-01-15, 2025-01-16 |
-| `settleDateTarget` | `object` | 0 | 0.0% | 2025-01-16, 2025-01-16, 2025-01-17 |
+| `dateTime` | `datetime64[ns, US/Eastern]` | 0 | 0.0% | 2025-01-18 15:30:00-04:00, 2025-01-19 16:15:00-04:00, 202... |
+| `tradeDate` | `object` | 0 | 0.0% | 2025-01-21, 2025-01-22, 2025-01-23 |
+| `settleDateTarget` | `object` | 0 | 0.0% | 2025-01-24, 2025-01-25, 2025-01-26 |
 | `transactionType` | `object` | 0 | 0.0% | ExchTrade, ExchTrade, ExchTrade |
-| `exchange` | `object` | 0 | 0.0% | BOX, PSE, NYMEX |
-| `quantity` | `float64` | 0 | 0.0% | 1.0, 1.0, -1.0 |
-| `tradePrice` | `float64` | 0 | 0.0% | 1.09, 1.42, 56.86 |
-| `tradeMoney` | `float64` | 0 | 0.0% | 109.0, 142.0, -5686.0 |
-| `proceeds` | `float64` | 0 | 0.0% | -109.0, -142.0, 5686.0 |
+| `exchange` | `object` | 0 | 0.0% | DARK, DARK, IBDRIPUS |
+| `quantity` | `float64` | 0 | 0.0% | 100.0, 25.0, 1.1085 |
+| `tradePrice` | `float64` | 0 | 0.0% | 124.8, 124.9088, 107.12 |
+| `tradeMoney` | `float64` | 0 | 0.0% | 12480.0, 3122.72, 118.74252 |
+| `proceeds` | `float64` | 0 | 0.0% | -12480.0, -3122.72, -118.74252 |
 | `taxes` | `int64` | 0 | 0.0% | 0, 0, 0 |
-| `ibCommission` | `float64` | 0 | 0.0% | -1.0459, -1.0459, -0.77 |
+| `ibCommission` | `float64` | 0 | 0.0% | -1.0046, -1.00115, -0.11877245 |
 | `ibCommissionCurrency` | `object` | 0 | 0.0% | USD, USD, USD |
-| `netCash` | `float64` | 0 | 0.0% | -110.0459, -143.0459, -38.77 |
-| `closePrice` | `float64` | 0 | 0.0% | 1.085, 1.0171, 57.24 |
-| `openCloseIndicator` | `object` | 0 | 0.0% | C, C, O |
-| `notes` | `object` | 0 | 0.0% | , ,  |
-| `cost` | `float64` | 0 | 0.0% | 174.30131, 151.94881, -5685.23 |
-| `fifoPnlRealized` | `float64` | 0 | 0.0% | 64.25541, 8.90291, 0.0 |
-| `mtmPnl` | `float64` | 0 | 0.0% | -0.5, -40.29, -38.0 |
+| `netCash` | `float64` | 0 | 0.0% | -12481.0046, -3123.72115, -118.86129245 |
+| `closePrice` | `float64` | 0 | 0.0% | 125.16, 125.16, 106.72 |
+| `openCloseIndicator` | `object` | 0 | 0.0% | O, O, O |
+| `notes` | `object` | 0 | 0.0% | IA, IA, R |
+| `cost` | `float64` | 0 | 0.0% | 12481.0046, 3123.72115, 118.86129245 |
+| `fifoPnlRealized` | `float64` | 0 | 0.0% | 0.0, 0.0, 0.0 |
+| `fxPnl` | `int64` | 0 | 0.0% | 0, 0, 0 |
+| `mtmPnl` | `float64` | 0 | 0.0% | 36.0, 6.28, -0.4434 |
 | `origTradePrice` | `int64` | 0 | 0.0% | 0, 0, 0 |
 | `origTradeDate` | `object` | 0 | 0.0% | , ,  |
-| `origTradeID` | `object` | 0 | 0.0% | , ,  |
-| `origOrderID` | `int64` | 0 | 0.0% | 0, 0, 0 |
+| `origTradeID` | `object` | 0 | 0.0% | 1000000004, 1000000005, 1000000006 |
+| `origOrderID` | `int64` | 0 | 0.0% | 9000000001, 9000000002, 9000000003 |
 | `clearingFirmID` | `object` | 0 | 0.0% | , ,  |
 | `transactionID` | `int64` | 0 | 0.0% | 5000000001, 5000000002, 5000000003 |
-| `buySell` | `object` | 0 | 0.0% | BUY, BUY, SELL |
-| `ibOrderID` | `int64` | 0 | 0.0% | 9000000001, 9000000002, 9000000003 |
-| `ibExecID` | `object` | 0 | 0.0% | 0000abcd.12345678.01.01, 0000efgh.23456789.01.01, 0000ijkl... |
-| `brokerageOrderID` | `object` | 0 | 0.0% | 00aabbcc.00ddeeff.11223344.000, 00aabbcc.00ddeeff.55667788... |
+| `buySell` | `object` | 0 | 0.0% | BUY, BUY, BUY |
+| `ibOrderID` | `int64` | 0 | 0.0% | 9000000004, 9000000005, 9000000006 |
+| `ibExecID` | `object` | 0 | 0.0% | 0000abcd.12345678.01.01, 0000efgh.12345679.01.01, 0000ijk... |
+| `brokerageOrderID` | `object` | 0 | 0.0% | 9000000007, 9000000008, 9000000009 |
 | `orderReference` | `object` | 0 | 0.0% | , ,  |
 | `volatilityOrderLink` | `object` | 0 | 0.0% | , ,  |
-| `exchOrderId` | `object` | 0 | 0.0% | N/A, N/A, N/A |
-| `extExecID` | `object` | 0 | 0.0% | ABC123XYZ000001, DEF456UVW000002, GHI789RST000003 |
-| `orderTime` | `datetime64[ns, US/Eastern]` | 11 | 7.1% | 2025-01-15 10:30:00-05:00, 2025-01-15 11:45:00-05:00, 202... |
+| `exchOrderId` | `object` | 0 | 0.0% | 9000000010, 9000000011, 9000000012 |
+| `extExecID` | `object` | 0 | 0.0% | 0000mnop.12345681.01.01, 0000qrst.12345682.01.01, 0000uvw... |
+| `orderTime` | `datetime64[ns, US/Eastern]` | 184 | 9.4% | 2025-01-27 14:15:00-04:00, 2025-01-28 15:30:00-04:00, 202... |
 | `openDateTime` | `object` | 0 | 0.0% | , ,  |
 | `holdingPeriodDateTime` | `object` | 0 | 0.0% | , ,  |
 | `whenRealized` | `object` | 0 | 0.0% | , ,  |
@@ -77,18 +80,30 @@
 | `levelOfDetail` | `object` | 0 | 0.0% | EXECUTION, EXECUTION, EXECUTION |
 | `changeInPrice` | `int64` | 0 | 0.0% | 0, 0, 0 |
 | `changeInQuantity` | `int64` | 0 | 0.0% | 0, 0, 0 |
-| `orderType` | `object` | 0 | 0.0% | LMT, LMT, LMT |
-| `traderID` | `object` | 0 | 0.0% | , ,  |
+| `orderType` | `object` | 0 | 0.0% | LMT, LMT,  |
+| `traderID` | `object` | 0 | 0.0% | 1000000007, 1000000008, 1000000009 |
 | `isAPIOrder` | `object` | 0 | 0.0% | N, N, N |
 | `accruedInt` | `int64` | 0 | 0.0% | 0, 0, 0 |
 
 ## Data Type Summary
 
 - **object**: 47 columns
-- **int64**: 12 columns
-- **float64**: 10 columns
+- **float64**: 12 columns
+- **int64**: 11 columns
 - **datetime64[ns, US/Eastern]**: 2 columns
 
 ## Columns with Missing Data
 
-- `orderTime`: 11 nulls (7.1%)
+- `orderTime`: 184 nulls (9.4%)
+
+## Anonymization Notes
+
+This schema documentation uses anonymized sample data:
+
+- **Account/Transaction IDs**: Replaced with sequential generic IDs
+- **Dates/Times**: Replaced with generic January 2025 dates and round times
+- **Personal Identifiers**: All replaced with non-identifying values
+- **Market Data**: Preserved real symbols, exchanges, and realistic prices
+- **Data Structure**: Exact types, null percentages, and formats maintained
+
+**This documentation is safe to share publicly and with LLMs for schema analysis.**
