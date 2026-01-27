@@ -4,9 +4,9 @@
 
 ## Overview
 
-- **Rows**: 1,962
+- **Rows**: 2,068
 - **Columns**: 72
-- **Memory Usage**: 4.99 MB
+- **Memory Usage**: 5.25 MB
 
 ## Column Details
 
@@ -72,7 +72,7 @@
 | `volatilityOrderLink` | `object` | 0 | 0.0% | , ,  |
 | `exchOrderId` | `object` | 0 | 0.0% | 9000000010, 9000000011, 9000000012 |
 | `extExecID` | `object` | 0 | 0.0% | 0000mnop.12345681.01.01, 0000qrst.12345682.01.01, 0000uvw... |
-| `orderTime` | `datetime64[ns, US/Eastern]` | 184 | 9.4% | 2025-01-27 14:15:00-04:00, 2025-01-28 15:30:00-04:00, 202... |
+| `orderTime` | `datetime64[ns, US/Eastern]` | 195 | 9.4% | 2025-01-27 14:15:00-04:00, 2025-01-28 15:30:00-04:00, 202... |
 | `openDateTime` | `object` | 0 | 0.0% | , ,  |
 | `holdingPeriodDateTime` | `object` | 0 | 0.0% | , ,  |
 | `whenRealized` | `object` | 0 | 0.0% | , ,  |
@@ -94,7 +94,7 @@
 
 ## Columns with Missing Data
 
-- `orderTime`: 184 nulls (9.4%)
+- `orderTime`: 195 nulls (9.4%)
 
 ## Anonymization Notes
 

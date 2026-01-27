@@ -16,7 +16,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "acctAlias": Column("object", nullable=True, coerce=False),
         "model": Column("object", nullable=True, coerce=False),
         "currency": Column("object", nullable=True, coerce=False),
-        "fxRateToBase": Column("float64", nullable=False, coerce=False),
+        "fxRateToBase": Column("float64", nullable=False, coerce=True),
         # Asset Information
         "assetCategory": Column("object", nullable=True, coerce=False),
         "symbol": Column("object", nullable=True, coerce=False),
@@ -34,7 +34,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "underlyingListingExchange": Column("object", nullable=True, coerce=False),
         "issuer": Column("object", nullable=True, coerce=False),
         # Contract Details
-        "multiplier": Column("float64", nullable=False, coerce=False),
+        "multiplier": Column("float64", nullable=False, coerce=True),
         "strike": Column("object", nullable=True, coerce=False),
         "expiry": Column("object", nullable=True, coerce=False),
         "tradeID": Column("int64", nullable=False, coerce=False),
@@ -48,7 +48,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         # Transaction Details
         "transactionType": Column("object", nullable=True, coerce=False),
         "exchange": Column("object", nullable=True, coerce=False),
-        "quantity": Column("float64", nullable=False, coerce=False),
+        "quantity": Column("float64", nullable=False, coerce=True),
         "tradePrice": Column("float64", nullable=False, coerce=False),
         "tradeMoney": Column("float64", nullable=False, coerce=False),
         "proceeds": Column("float64", nullable=False, coerce=False),

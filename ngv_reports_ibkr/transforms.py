@@ -12,9 +12,7 @@ def parse_datetime_series(raw_series: pd.Series) -> pd.Series:
 
     # values without semicolons are in the format: "2021-08-20;093000"
     format_without_semicolons = "%Y-%m-%d;%H%M%S"
-    series = pd.to_datetime(
-        raw_series_without_colons, format=format_without_semicolons, errors="coerce"
-    )
+    series = pd.to_datetime(raw_series_without_colons, format=format_without_semicolons, errors="coerce")
 
     # ibkr defaults to eastern time for most products
     series = series.dt.tz_localize(tz="US/Eastern")
@@ -44,10 +42,17 @@ class Mutations:
 
 class Transforms:
     @classmethod
+    def filter_to_executions(cls, df) -> pd.DataFrame:
+        """
+        Filter TWS realtime trades to only rows with actual executions.
+
+        Removes rows created from log entries that don't represent trades.
+        """
+        return df[df["fill_execution_id"].notna()].reset_index(drop=True)
+
+    @classmethod
     def add_strike(cls, df) -> None:
-        ddf = df.query('asset_category.isin(["OPT", "FOP"])').description.str.split(
-            " ", expand=True
-        )
+        ddf = df.query('asset_category.isin(["OPT", "FOP"])').description.str.split(" ", expand=True)
         df["strike"] = pd.to_numeric(ddf[2])
 
     @classmethod
