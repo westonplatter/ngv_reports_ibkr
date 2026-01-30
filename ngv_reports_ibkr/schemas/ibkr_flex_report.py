@@ -42,7 +42,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "reportDate": Column("object", nullable=True, coerce=False),
         "principalAdjustFactor": Column("object", nullable=True, coerce=False),
         # Trade Timing
-        "dateTime": Column("datetime64[ns, US/Eastern]", nullable=False, coerce=False),
+        "dateTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
         "tradeDate": Column("object", nullable=True, coerce=False),
         "settleDateTarget": Column("object", nullable=True, coerce=False),
         # Transaction Details
@@ -63,8 +63,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "cost": Column("float64", nullable=False, coerce=False),
         # P&L Information
         "fifoPnlRealized": Column("float64", nullable=False, coerce=False),
-        "fxPnl": Column("int64", nullable=False, coerce=False),
-        "mtmPnl": Column("float64", nullable=False, coerce=False),
+        "mtmPnl": Column("float64", nullable=False, coerce=True),
         # Original Trade Information
         "origTradePrice": Column("int64", nullable=False, coerce=False),
         "origTradeDate": Column("object", nullable=True, coerce=False),
@@ -78,11 +77,11 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "ibExecID": Column("object", nullable=True, coerce=False),
         "brokerageOrderID": Column("object", nullable=True, coerce=False),
         "orderReference": Column("object", nullable=True, coerce=False),
-        "volatilityOrderLink": Column("object", nullable=True, coerce=False),
+        "volatilityOrderLink": Column("object", nullable=True, coerce=True),
         "exchOrderId": Column("object", nullable=True, coerce=False),
         "extExecID": Column("object", nullable=True, coerce=False),
         # Order Timing - orderTime has 7.1% nulls according to documentation
-        "orderTime": Column("datetime64[ns, US/Eastern]", nullable=True, coerce=False),
+        "orderTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
         "openDateTime": Column("object", nullable=True, coerce=False),
         "holdingPeriodDateTime": Column("object", nullable=True, coerce=False),
         "whenRealized": Column("object", nullable=True, coerce=False),
