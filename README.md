@@ -41,7 +41,7 @@ ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@mai
    5. Format = XML
    6. Period = Last 365 Days
    7. Date Format = yyy-MM-dd
-   8. Time Format = HH:mm:ss
+   8. Time Format = HH:mm:ss Timezone
    9. Date/Time Separator = ;semicolon
    10. ProfitLoss = Default
    11. Include Canceled Trades = No
