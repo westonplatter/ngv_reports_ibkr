@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import pandera.pandas as pa
 import pytest
@@ -282,8 +283,6 @@ def test_tws_schema_validates_datetime_columns():
 
 def test_tws_schema_handles_nullable_fill_columns():
     """Test that nullable fill columns allow NaN values while preserving dtype."""
-    import numpy as np
-
     df = create_valid_tws_trade_df()
 
     # Set nullable fill columns to NaN while preserving float64 dtype
