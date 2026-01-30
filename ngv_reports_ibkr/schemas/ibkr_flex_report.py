@@ -8,7 +8,7 @@ It allows additional columns to be present but requires all expected columns.
 from pandera.pandas import Column, DataFrameSchema
 
 # Schema for IBKR Flex Report Trades
-# Based on data with 71 columns and 154 rows
+# Based on data with 72 columns and 2068 rows
 ibkr_flex_report_trades_schema = DataFrameSchema(
     columns={
         # Account Information
@@ -16,7 +16,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "acctAlias": Column("object", nullable=True, coerce=False),
         "model": Column("object", nullable=True, coerce=False),
         "currency": Column("object", nullable=True, coerce=False),
-        "fxRateToBase": Column("float64", nullable=False, coerce=False),
+        "fxRateToBase": Column("float64", nullable=False, coerce=True),
         # Asset Information
         "assetCategory": Column("object", nullable=True, coerce=False),
         "symbol": Column("object", nullable=True, coerce=False),
@@ -34,7 +34,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "underlyingListingExchange": Column("object", nullable=True, coerce=False),
         "issuer": Column("object", nullable=True, coerce=False),
         # Contract Details
-        "multiplier": Column("float64", nullable=False, coerce=False),
+        "multiplier": Column("float64", nullable=False, coerce=True),
         "strike": Column("object", nullable=True, coerce=False),
         "expiry": Column("object", nullable=True, coerce=False),
         "tradeID": Column("int64", nullable=False, coerce=False),
@@ -42,13 +42,13 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "reportDate": Column("object", nullable=True, coerce=False),
         "principalAdjustFactor": Column("object", nullable=True, coerce=False),
         # Trade Timing
-        "dateTime": Column("datetime64[ns, US/Eastern]", nullable=False, coerce=False),
+        "dateTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
         "tradeDate": Column("object", nullable=True, coerce=False),
         "settleDateTarget": Column("object", nullable=True, coerce=False),
         # Transaction Details
         "transactionType": Column("object", nullable=True, coerce=False),
         "exchange": Column("object", nullable=True, coerce=False),
-        "quantity": Column("float64", nullable=False, coerce=False),
+        "quantity": Column("float64", nullable=False, coerce=True),
         "tradePrice": Column("float64", nullable=False, coerce=False),
         "tradeMoney": Column("float64", nullable=False, coerce=False),
         "proceeds": Column("float64", nullable=False, coerce=False),
@@ -63,7 +63,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "cost": Column("float64", nullable=False, coerce=False),
         # P&L Information
         "fifoPnlRealized": Column("float64", nullable=False, coerce=False),
-        "mtmPnl": Column("float64", nullable=False, coerce=False),
+        "mtmPnl": Column("float64", nullable=False, coerce=True),
         # Original Trade Information
         "origTradePrice": Column("int64", nullable=False, coerce=False),
         "origTradeDate": Column("object", nullable=True, coerce=False),
@@ -77,11 +77,11 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "ibExecID": Column("object", nullable=True, coerce=False),
         "brokerageOrderID": Column("object", nullable=True, coerce=False),
         "orderReference": Column("object", nullable=True, coerce=False),
-        "volatilityOrderLink": Column("object", nullable=True, coerce=False),
+        "volatilityOrderLink": Column("object", nullable=True, coerce=True),
         "exchOrderId": Column("object", nullable=True, coerce=False),
         "extExecID": Column("object", nullable=True, coerce=False),
         # Order Timing - orderTime has 7.1% nulls according to documentation
-        "orderTime": Column("datetime64[ns, US/Eastern]", nullable=True, coerce=False),
+        "orderTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
         "openDateTime": Column("object", nullable=True, coerce=False),
         "holdingPeriodDateTime": Column("object", nullable=True, coerce=False),
         "whenRealized": Column("object", nullable=True, coerce=False),
