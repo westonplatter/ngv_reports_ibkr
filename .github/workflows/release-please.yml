@@ -21,6 +21,4 @@ jobs:
     steps:
       - uses: googleapis/release-please-action@v4
         with:
-          # Uses the default GITHUB_TOKEN (built-in secret)
           token: ${{ github.token }}
-          release-type: python
