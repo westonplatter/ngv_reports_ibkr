@@ -46,9 +46,9 @@ ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@mai
    10. ProfitLoss = Default
    11. Include Canceled Trades = No
    12. Include Base Currency = No
-   13. Include All Audit Fields = No
+   13. Include All Audit Fields = Yes
    14. Display Account Alias in Place of Account ID = No
-   15. Breakout by Day = No
+   15. Breakout by Day = Yes
 
 2. Clone the repo and install it with uv
 
