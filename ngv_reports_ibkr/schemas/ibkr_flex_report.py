@@ -8,7 +8,7 @@ It allows additional columns to be present but requires all expected columns.
 from pandera.pandas import Column, DataFrameSchema
 
 # Schema for IBKR Flex Report Trades
-# Based on data with 71 columns and 154 rows
+# Based on data with 72 columns and 2068 rows
 ibkr_flex_report_trades_schema = DataFrameSchema(
     columns={
         # Account Information
@@ -63,6 +63,7 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "cost": Column("float64", nullable=False, coerce=False),
         # P&L Information
         "fifoPnlRealized": Column("float64", nullable=False, coerce=False),
+        "fxPnl": Column("int64", nullable=False, coerce=False),
         "mtmPnl": Column("float64", nullable=False, coerce=False),
         # Original Trade Information
         "origTradePrice": Column("int64", nullable=False, coerce=False),
