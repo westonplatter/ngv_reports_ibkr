@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.0.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.3.0...v1.0.0) (2026-01-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Discord integration is no longer supported.
+
+### Features
+
+* remove deprecated Discord integration ([#44](https://github.com/westonplatter/ngv_reports_ibkr/issues/44)) ([53f0782](https://github.com/westonplatter/ngv_reports_ibkr/commit/53f0782df527379c336fc7e0679d5f377d9c0c4b))
+
+
+### Documentation
+
+* add uv direct install instructions to README ([#46](https://github.com/westonplatter/ngv_reports_ibkr/issues/46)) ([841bf86](https://github.com/westonplatter/ngv_reports_ibkr/commit/841bf86b54b93a443fbe46ac8712986358b40756))
+* Update audit fields. Set audit fields = yes, break out by day = yes ([#43](https://github.com/westonplatter/ngv_reports_ibkr/issues/43)) ([3c3d140](https://github.com/westonplatter/ngv_reports_ibkr/commit/3c3d140ebff0b2bcd1c19ca0565a4058e68b86f0))
+* update Time Format to include Timezone in README ([#41](https://github.com/westonplatter/ngv_reports_ibkr/issues/41)) ([49b5f53](https://github.com/westonplatter/ngv_reports_ibkr/commit/49b5f53f6b2d7b356140ab75e9d19e1f70dfb2bd))
+
+
+### Miscellaneous Chores
+
+* **deps:** upgrade pandera to 0.29.0, add TWS trades schema tests ([#45](https://github.com/westonplatter/ngv_reports_ibkr/issues/45)) ([a36de2d](https://github.com/westonplatter/ngv_reports_ibkr/commit/a36de2dcd66e8d7341562615a8b3d5933ae1bdec))
+
 ## [0.3.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.2.0...v0.3.0) (2026-01-30)
 
 
