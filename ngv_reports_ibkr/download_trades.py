@@ -1,41 +1,10 @@
 import time
-import warnings
 
 from loguru import logger
 
-from ngv_reports_ibkr.adapters import (
-    ReportOutputAdapterCSV,
-    ReportOutputAdapterDiscord,
-)
-from ngv_reports_ibkr.config_helpers import (
-    get_config,
-    get_ib_json,
-    get_discord_webhook_url,
-)
+from ngv_reports_ibkr.adapters import ReportOutputAdapterCSV
+from ngv_reports_ibkr.config_helpers import get_config, get_ib_json
 from ngv_reports_ibkr.custom_flex_report import CustomFlexReport
-
-
-def process_report_discord(report: CustomFlexReport, discord_webhook_url: str):
-    """
-    Process report through discord output adapter
-
-    .. deprecated:: 0.2.0
-        This function is deprecated and will be removed in a future version.
-        Discord integration is no longer supported.
-    """
-    warnings.warn(
-        "process_report_discord is deprecated and will be removed in a future version. "
-        "Discord integration is no longer supported.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-    for account_id in report.account_ids():
-        output_adapter = ReportOutputAdapterDiscord(
-            account_id=account_id,
-            report=report,
-            discord_webhook_url=discord_webhook_url,
-        )
-        output_adapter.put_notifications()
 
 
 def fetch_report(
@@ -106,45 +75,3 @@ def execute_csv_for_accounts(
         report = fetch_report(flex_token, query_id, cache_report_on_disk=cache)
         output_adapter = ReportOutputAdapterCSV(data_folder="data", report=report)
         output_adapter.process_accounts()
-
-
-def execute_discord_for_accounts(
-    report_name: str, cache: bool = False, file_name: str = ".env"
-) -> None:
-    """
-    Execute the discord notifications process for accounts
-
-    .. deprecated:: 0.2.0
-        This function is deprecated and will be removed in a future version.
-        Discord integration is no longer supported.
-
-    Args:
-        report_name (str): the report to execute. Expected options: daily, weekly, annual
-        cache (bool, optional): save FlexReport XML to disk. Defaults to False.
-        file_name (str, optional): env file name. Defaults to ".env".
-    """
-    warnings.warn(
-        "execute_discord_for_accounts is deprecated and will be removed in a future version.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
-    configs = get_config(file_name)
-    data = get_ib_json(configs)
-
-    if "accounts" not in data:
-        return None
-
-    for account in data["accounts"]:
-        # ensure the account is setup for the report, if not skip
-        query_id = int(account[report_name.lower()])
-        if query_id <= 0:
-            continue
-
-        flex_token = account["flex_token"]
-        discord_webhook_url = get_discord_webhook_url(configs)
-
-        # get report
-        report = fetch_report(flex_token, query_id, cache_report_on_disk=cache)
-
-        # send notifications
-        process_report_discord(report, discord_webhook_url=discord_webhook_url)

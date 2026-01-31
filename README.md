@@ -22,6 +22,18 @@ Or add it to your `requirements.txt` file,
 ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@main
 ```
 
+Or add it as a uv direct dependency in your `pyproject.toml`,
+
+```toml
+[project]
+dependencies = [
+    "ngv_reports_ibkr @ git+https://github.com/westonplatter/ngv_reports_ibkr.git@main",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+```
+
 ## Getting Started
 
 1. Create a Flex Report in the Interactive Broker website (see this [link](https://guides.interactivebrokers.com/ap/Content/activityflex.htm))
