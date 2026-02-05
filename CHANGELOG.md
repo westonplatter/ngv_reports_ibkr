@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.4.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.3.0...v0.4.0) (2026-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Discord integration is no longer supported.
+
+### Features
+
+* created unified data framework concept ([#49](https://github.com/westonplatter/ngv_reports_ibkr/issues/49)) ([78d21ec](https://github.com/westonplatter/ngv_reports_ibkr/commit/78d21ec2b52da027b366c57118fcfcf8fb3a9d59))
+* remove deprecated Discord integration ([#44](https://github.com/westonplatter/ngv_reports_ibkr/issues/44)) ([53f0782](https://github.com/westonplatter/ngv_reports_ibkr/commit/53f0782df527379c336fc7e0679d5f377d9c0c4b))
+
+
+### Documentation
+
+* add uv direct install instructions to README ([#46](https://github.com/westonplatter/ngv_reports_ibkr/issues/46)) ([841bf86](https://github.com/westonplatter/ngv_reports_ibkr/commit/841bf86b54b93a443fbe46ac8712986358b40756))
+* Update audit fields. Set audit fields = yes, break out by day = yes ([#43](https://github.com/westonplatter/ngv_reports_ibkr/issues/43)) ([3c3d140](https://github.com/westonplatter/ngv_reports_ibkr/commit/3c3d140ebff0b2bcd1c19ca0565a4058e68b86f0))
+* update Time Format to include Timezone in README ([#41](https://github.com/westonplatter/ngv_reports_ibkr/issues/41)) ([49b5f53](https://github.com/westonplatter/ngv_reports_ibkr/commit/49b5f53f6b2d7b356140ab75e9d19e1f70dfb2bd))
+
+
+### Miscellaneous Chores
+
+* **deps:** upgrade pandera to 0.29.0, add TWS trades schema tests ([#45](https://github.com/westonplatter/ngv_reports_ibkr/issues/45)) ([a36de2d](https://github.com/westonplatter/ngv_reports_ibkr/commit/a36de2dcd66e8d7341562615a8b3d5933ae1bdec))
+* update rp configs ([#50](https://github.com/westonplatter/ngv_reports_ibkr/issues/50)) ([12470c4](https://github.com/westonplatter/ngv_reports_ibkr/commit/12470c45c2647488bdc6d51c97249a6ef3f3c886))
+
 ## [0.3.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.2.0...v0.3.0) (2026-01-30)
 
 
