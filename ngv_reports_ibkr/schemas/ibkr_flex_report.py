@@ -8,15 +8,15 @@ It allows additional columns to be present but requires all expected columns.
 from pandera.pandas import Column, DataFrameSchema
 
 # Schema for IBKR Flex Report Trades
-# Based on data with 71 columns and 154 rows
+# Based on data with 72 columns and 2068 rows
 ibkr_flex_report_trades_schema = DataFrameSchema(
     columns={
         # Account Information
-        "accountId": Column(nullable=False),
-        "acctAlias": Column(nullable=True),
-        "model": Column(nullable=True),
-        "currency": Column(nullable=True),
-        "fxRateToBase": Column(nullable=False),
+        "accountId": Column("object", nullable=True, coerce=False),
+        "acctAlias": Column("object", nullable=True, coerce=False),
+        "model": Column("object", nullable=True, coerce=False),
+        "currency": Column("object", nullable=True, coerce=False),
+        "fxRateToBase": Column("float64", nullable=False, coerce=True),
         # Asset Information
         "assetCategory": Column(nullable=True),
         "symbol": Column(nullable=True),
@@ -35,23 +35,23 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "issuer": Column(nullable=True),
         # Contract Details
         "multiplier": Column("float64", nullable=False, coerce=True),
-        "strike": Column(nullable=True),
-        "expiry": Column(nullable=True),
-        "tradeID": Column(nullable=False),
-        "putCall": Column(nullable=True),
-        "reportDate": Column(nullable=True),
-        "principalAdjustFactor": Column(nullable=True),
+        "strike": Column("object", nullable=True, coerce=False),
+        "expiry": Column("object", nullable=True, coerce=False),
+        "tradeID": Column("int64", nullable=False, coerce=False),
+        "putCall": Column("object", nullable=True, coerce=False),
+        "reportDate": Column("object", nullable=True, coerce=False),
+        "principalAdjustFactor": Column("object", nullable=True, coerce=False),
         # Trade Timing
-        "dateTime": Column("datetime64[ns, US/Eastern]", nullable=True, coerce=True),
-        "tradeDate": Column(nullable=True),
-        "settleDateTarget": Column(nullable=True),
+        "dateTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
+        "tradeDate": Column("object", nullable=True, coerce=False),
+        "settleDateTarget": Column("object", nullable=True, coerce=False),
         # Transaction Details
-        "transactionType": Column(nullable=True),
-        "exchange": Column(nullable=True),
+        "transactionType": Column("object", nullable=True, coerce=False),
+        "exchange": Column("object", nullable=True, coerce=False),
         "quantity": Column("float64", nullable=False, coerce=True),
-        "tradePrice": Column("float64", nullable=False, coerce=True),
-        "tradeMoney": Column("float64", nullable=False, coerce=True),
-        "proceeds": Column("float64", nullable=False, coerce=True),
+        "tradePrice": Column("float64", nullable=False, coerce=False),
+        "tradeMoney": Column("float64", nullable=False, coerce=False),
+        "proceeds": Column("float64", nullable=False, coerce=False),
         "taxes": Column("int64", nullable=False, coerce=False),
         # Commission and Costs
         "ibCommission": Column(nullable=False),
@@ -71,21 +71,21 @@ ibkr_flex_report_trades_schema = DataFrameSchema(
         "origOrderID": Column(nullable=False),
         "clearingFirmID": Column(nullable=True),
         # Transaction IDs
-        "transactionID": Column(nullable=False),
-        "buySell": Column(nullable=True),
-        "ibOrderID": Column(nullable=False),
-        "ibExecID": Column(nullable=True),
-        "brokerageOrderID": Column(nullable=True),
-        "orderReference": Column(nullable=True),
-        "volatilityOrderLink": Column(nullable=True),
-        "exchOrderId": Column(nullable=True),
-        "extExecID": Column(nullable=True),
+        "transactionID": Column("int64", nullable=False, coerce=False),
+        "buySell": Column("object", nullable=True, coerce=False),
+        "ibOrderID": Column("int64", nullable=False, coerce=False),
+        "ibExecID": Column("object", nullable=True, coerce=False),
+        "brokerageOrderID": Column("object", nullable=True, coerce=False),
+        "orderReference": Column("object", nullable=True, coerce=False),
+        "volatilityOrderLink": Column("object", nullable=True, coerce=True),
+        "exchOrderId": Column("object", nullable=True, coerce=False),
+        "extExecID": Column("object", nullable=True, coerce=False),
         # Order Timing - orderTime has 7.1% nulls according to documentation
-        "orderTime": Column("datetime64[ns, US/Eastern]", nullable=True, coerce=True),
-        "openDateTime": Column(nullable=True),
-        "holdingPeriodDateTime": Column(nullable=True),
-        "whenRealized": Column(nullable=True),
-        "whenReopened": Column(nullable=True),
+        "orderTime": Column("datetime64[ns, America/New_York]", nullable=True, coerce=False),
+        "openDateTime": Column("object", nullable=True, coerce=False),
+        "holdingPeriodDateTime": Column("object", nullable=True, coerce=False),
+        "whenRealized": Column("object", nullable=True, coerce=False),
+        "whenReopened": Column("object", nullable=True, coerce=False),
         # Order Details
         "levelOfDetail": Column(nullable=True),
         "changeInPrice": Column(nullable=False),

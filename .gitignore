@@ -1,3 +1,5 @@
+replacements.txt 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -86,7 +88,9 @@ data_U*.json
 *.sqlite-wal
 
 .cursor
+
 AGENTS.md
 
 .mcp.json
 
+_bmad

@@ -10,9 +10,6 @@ API Reference
 .. autoclass:: ngv_reports_ibkr.adapters.ReportOutputAdapterPandas
     :members:
 
-.. autoclass:: ngv_reports_ibkr.adapters.ReportOutputAdapterDiscord
-    :members:
-
 .. autoclass:: ngv_reports_ibkr.custom_flex_report.CustomFlexReport
     :members:
 
