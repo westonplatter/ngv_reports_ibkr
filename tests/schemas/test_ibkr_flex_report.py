@@ -173,3 +173,28 @@ def test_schema_lazy_validation_multiple_errors():
 
     # Verify we have 2 errors collected
     assert len(exc_info.value.failure_cases) >= 2, f"Expected at least 2 failure cases, got {len(exc_info.value.failure_cases)}"
+
+
+def test_multiplier_coercion_int_to_float():
+    """Test that multiplier is coerced from int64 to float64."""
+    df = create_valid_trade_df()
+    # Set multiplier as int64 (equity contracts typically have multiplier=1)
+    df["multiplier"] = [1]  # int64
+
+    # Should coerce to float64 without raising error
+    validated_df = validate_ibkr_flex_report_trades(df)
+
+    assert validated_df["multiplier"].dtype == "float64"
+    assert validated_df["multiplier"].iloc[0] == 1.0
+
+
+def test_multiplier_coercion_decimal_options():
+    """Test that decimal multipliers (options) are handled correctly."""
+    df = create_valid_trade_df()
+    # Set multiplier as decimal (options contracts use 0.01 multiplier)
+    df["multiplier"] = [0.01]  # float64
+
+    validated_df = validate_ibkr_flex_report_trades(df)
+
+    assert validated_df["multiplier"].dtype == "float64"
+    assert validated_df["multiplier"].iloc[0] == 0.01
