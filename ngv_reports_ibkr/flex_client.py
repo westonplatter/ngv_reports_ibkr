@@ -22,7 +22,6 @@ from typing import Callable, Optional, Protocol
 import requests
 from loguru import logger
 
-
 # =============================================================================
 # Exceptions
 # =============================================================================

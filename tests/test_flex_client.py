@@ -20,7 +20,6 @@ from ngv_reports_ibkr.flex_client import (
     FlexTokenExpiredError,
     HTTPFlexClient,
 )
-
 from tests.fixtures import (
     create_get_statement_error,
     create_get_statement_success,
