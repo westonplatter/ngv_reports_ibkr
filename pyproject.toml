@@ -16,7 +16,7 @@ dependencies = [
   "python-dotenv",
   "pytz",
   "requests",
-  "pandera>=0.26.1",
+  "pandera>=0.29.0",
   "pyarrow>=22.0.0",
 ]
 requires-python = ">=3.10"

@@ -43,7 +43,7 @@ def create_valid_trade_df():
             "reportDate": ["2025-01-15"],  # Generic January date
             "principalAdjustFactor": [""],
             # Trade timing - generic dates/times
-            "dateTime": [pd.Timestamp("2025-01-15 10:30:00", tz="US/Eastern")],
+            "dateTime": [pd.Timestamp("2025-01-15 10:30:00", tz="America/New_York")],
             "tradeDate": ["2025-01-15"],
             "settleDateTarget": ["2025-01-16"],
             # Transaction details - keep realistic prices
@@ -82,7 +82,7 @@ def create_valid_trade_df():
             "exchOrderId": ["N/A"],
             "extExecID": ["GHI789RST000003"],  # Generic alphanumeric
             # Order timing
-            "orderTime": [pd.Timestamp("2025-01-15 10:30:00", tz="US/Eastern")],
+            "orderTime": [pd.Timestamp("2025-01-15 10:30:00", tz="America/New_York")],
             "openDateTime": [""],
             "holdingPeriodDateTime": [""],
             "whenRealized": [""],
