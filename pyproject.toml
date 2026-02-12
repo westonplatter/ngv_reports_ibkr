@@ -37,6 +37,8 @@ dev = [
   "twine",
   "openpyxl",
   "pytest>=7.5",
+  "pytest-mock>=3.14.0",
+  "responses>=0.25.0",
   "nbstripout>=0.8.2",
 ]
 docs = ["sphinx", "sphinx_rtd_theme", "myst_parser"]
