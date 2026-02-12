@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.4.0...v0.5.0) (2026-02-12)
+
+
+### Features
+
+* **flex:** set up new service for IBKR Flex reports ([#48](https://github.com/westonplatter/ngv_reports_ibkr/issues/48)) ([89c02d5](https://github.com/westonplatter/ngv_reports_ibkr/commit/89c02d50a9c453e540d186ca05c43c3d6374278f))
+
 ## [0.4.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.3.0...v0.4.0) (2026-02-05)
 
 
