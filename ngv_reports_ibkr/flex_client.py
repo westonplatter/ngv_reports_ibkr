@@ -2,13 +2,13 @@
 Flex Web Service client for IBKR API.
 
 This module provides direct HTTP communication with the IBKR Flex Web Service,
-supporting custom date ranges, token lifecycle management, and robust error handling.
+supporting custom date ranges and robust error handling with retry logic.
 
 The IBKR Flex Web Service has two main endpoints:
 1. SendRequest - Initiates a flex query and returns a reference code
 2. GetStatement - Retrieves the generated statement using the reference code
 
-Reference: https://www.interactivebrokers.com/en/software/am/am/reports/flex_web_service_version_3.htm
+Reference: https://www.interactivebrokers.com/campus/ibkr-api-page/flex-web-service/
 """
 
 import random
