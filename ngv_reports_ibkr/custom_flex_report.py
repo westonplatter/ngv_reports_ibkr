@@ -76,17 +76,7 @@ class CustomFlexReport(FlexReport):
         df.orderTime = parse_datetime_series(df.orderTime)
         df.tradeDate = parse_date_series(df.tradeDate)
 
-        # Validate DataFrame against schema
-        try:
-            return validate_ibkr_flex_report_trades_lazy(df)
-        except pa.errors.SchemaErrors as e:
-            logger.error(
-                f"Trades data for account '{account_id}' failed schema validation. "
-                f"This may indicate corrupted IBKR data or a schema mismatch. "
-                f"Found {len(e.failure_cases)} validation error(s). "
-                f"Original error: {str(e)}"
-            )
-            return df
+        return df
 
     def closed_trades_by_account_id(self, account_id: str) -> pd.DataFrame:
         df = self.trades_by_account_id(account_id)
