@@ -8,13 +8,20 @@
 
 import os
 import sys
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as pkg_version
 
 sys.path.insert(0, os.path.abspath(".."))
 
 project = "NextGenVol IBKR Reports"
 copyright = "2023, Weston Platter"
 author = "Weston Platter"
-release = "0.1.0"
+
+try:
+    release = pkg_version("ngv_reports_ibkr")
+except PackageNotFoundError:  # not installed, eg. a bare `sphinx-build` checkout
+    release = "0.0.0"
+version = release
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -35,4 +42,4 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # html_theme = "alabaster"
 html_theme = "sphinx_rtd_theme"
-html_static_path = ["_static"]
+html_static_path = []
