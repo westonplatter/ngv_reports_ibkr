@@ -59,7 +59,17 @@ runtimes:
     - python@3.10.8
 
 actions:
+  definitions:
+    # Block a commit that would introduce real IBKR identifiers. The script is
+    # pure stdlib, so the hook works without uv or a synced virtualenv.
+    - id: ibkr-sensitive-data-check
+      display_name: IBKR sensitive data
+      description: Reject staged changes containing real IBKR account/contract/execution IDs
+      run: python3 scripts/ibkr_sensitive_data_check.py --quiet
+      triggers:
+        - git_hooks: [pre-commit]
   enabled:
+    - ibkr-sensitive-data-check
     - trunk-announce
     - trunk-check-pre-push
     - trunk-fmt-pre-commit

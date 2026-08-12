@@ -137,3 +137,15 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management and
   ```bash
   uv build                   # Build the package (replaces python setup.py sdist bdist_wheel)
   ```
+
+## Development
+
+- **Check for real IBKR data before committing**
+
+  Sample data (docs, schemas, fixtures) must use anonymized values — see
+  [`docs/ibkr-sample-data.md`](docs/ibkr-sample-data.md) for the anonymization patterns.
+
+  ```bash
+  uv run python scripts/ibkr_sensitive_data_check.py              # staged changes, else unstaged
+  uv run python scripts/ibkr_sensitive_data_check.py --paths docs # scan whole files/dirs
+  ```

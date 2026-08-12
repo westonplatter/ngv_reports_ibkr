@@ -12,7 +12,7 @@ def create_valid_trade_df():
     """Create a minimal valid trade DataFrame for testing using MCL (Crude Oil futures)."""
     return pd.DataFrame(
         {
-            # Account info - anonymized per prompt-ibkr-sample-data.md
+            # Account info - anonymized per docs/ibkr-sample-data.md
             "accountId": ["U1234567"],
             "acctAlias": [""],
             "model": [""],
