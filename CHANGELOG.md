@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.5.0...v0.5.1) (2026-08-12)
+
+
+### Documentation
+
+* sync docs with codebase, add AGENTS.md, test on python 3.14 ([#54](https://github.com/westonplatter/ngv_reports_ibkr/issues/54)) ([95a9329](https://github.com/westonplatter/ngv_reports_ibkr/commit/95a9329418f3faff02114b6d630d92dd105b79c3))
+
 ## [0.5.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.4.0...v0.5.0) (2026-05-08)
 
 
