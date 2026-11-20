@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.5.1...v0.6.0) (2026-11-20)
+
+
+### Features
+
+* **compat:** support ib_async v2 and v3 in the same code ([#58](https://github.com/westonplatter/ngv_reports_ibkr/issues/58)) ([bb1742a](https://github.com/westonplatter/ngv_reports_ibkr/commit/bb1742a4ebf2dda5716761225beaaaca294cea9d))
+
+
+### Documentation
+
+* plan the ib_async v3 upgrade ([#56](https://github.com/westonplatter/ngv_reports_ibkr/issues/56)) ([6a25fbc](https://github.com/westonplatter/ngv_reports_ibkr/commit/6a25fbcd2018708e7183d6e6eea417bdf8292034))
+
 ## [0.5.1](https://github.com/westonplatter/ngv_reports_ibkr/compare/v0.5.0...v0.5.1) (2026-08-12)
 
 
