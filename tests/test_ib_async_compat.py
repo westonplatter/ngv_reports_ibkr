@@ -75,9 +75,17 @@ def test_pandas_df_uses_pandasDf_when_present(monkeypatch):
 
 
 def test_pandas_df_falls_back_to_util_df(monkeypatch):
+    # v2 has no pandasDf, and its util.df returns pandas.
+    calls = []
+
+    def fake_v2_df(objs):
+        calls.append(objs)
+        return pd.DataFrame(objs)
+
     monkeypatch.delattr(util, "pandasDf", raising=False)
+    monkeypatch.setattr(util, "df", fake_v2_df)
     df = pandas_df([{"a": 1}])
-    assert isinstance(df, pd.DataFrame)
+    assert calls == [[{"a": 1}]]
     assert df["a"].tolist() == [1]
 
 
@@ -93,8 +101,8 @@ def test_flex_empty_topic_returns_none(flex_report):
 
 def test_flex_empty_topic_returns_none_with_v3_empty_frame(flex_report, monkeypatch):
     # v3 pandasDf([]) returns an empty DataFrame with no columns.
-    v2_df = util.df
-    monkeypatch.setattr(util, "pandasDf", lambda objs: v2_df(objs) if objs else pd.DataFrame(columns=[]), raising=False)
+    real_to_pandas = getattr(util, "pandasDf", util.df)
+    monkeypatch.setattr(util, "pandasDf", lambda objs: real_to_pandas(objs) if objs else pd.DataFrame(columns=[]), raising=False)
     assert flex_report.orders_by_account_id("U1234567") is None
     assert flex_report.change_in_nav_by_account_id("U1234567") is not None
 
