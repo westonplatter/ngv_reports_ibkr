@@ -3,7 +3,11 @@ Simple utility to expand ib_async contract objects into DataFrame columns.
 """
 
 import sys
+
 import pandas as pd
+
+from ngv_reports_ibkr.ib_async_compat import commission_and_fees, to_float
+
 # IBKR uses max float64 as "UNSET" indicator
 UNSET_DOUBLE = sys.float_info.max
 UNSET_INTEGER = 2147483647  # INT_MAX
@@ -48,9 +52,12 @@ def extract_object_attributes(obj, clean_numeric=False, exclude_attrs=None):
         if callable(attr_value):
             continue
 
-        # Clean numeric values if requested
-        if clean_numeric and isinstance(attr_value, (int, float)):
-            attr_value = _clean_unset_value(attr_value)
+        # Clean numeric values if requested. ib_async v3 uses Decimal for
+        # quantities and prices; convert to float to match v2.
+        if clean_numeric:
+            attr_value = to_float(attr_value)
+            if isinstance(attr_value, (int, float)):
+                attr_value = _clean_unset_value(attr_value)
 
         data[attr_name] = attr_value
 
@@ -154,10 +161,10 @@ def expand_order_status_column(df: pd.DataFrame, status_col: str = "orderStatus"
 
         data = {
             "status": getattr(status, "status", None),
-            "filled": getattr(status, "filled", None),
-            "remaining": getattr(status, "remaining", None),
-            "avgFillPrice": getattr(status, "avgFillPrice", None),
-            "lastFillPrice": getattr(status, "lastFillPrice", None),
+            "filled": to_float(getattr(status, "filled", None)),
+            "remaining": to_float(getattr(status, "remaining", None)),
+            "avgFillPrice": to_float(getattr(status, "avgFillPrice", None)),
+            "lastFillPrice": to_float(getattr(status, "lastFillPrice", None)),
         }
 
         status_data.append(data)
@@ -247,16 +254,16 @@ def expand_fills_and_logs(df: pd.DataFrame, fills_col: str = "fills", log_col: s
                             # Execution details
                             "fill_execution_id": getattr(execution, "execId", None) if execution else None,
                             "fill_execution_time": getattr(execution, "time", None) if execution else None,
-                            "fill_shares": getattr(execution, "shares", None) if execution else None,
-                            "fill_price": getattr(execution, "price", None) if execution else None,
+                            "fill_shares": to_float(getattr(execution, "shares", None)) if execution else None,
+                            "fill_price": to_float(getattr(execution, "price", None)) if execution else None,
                             "fill_exchange": getattr(execution, "exchange", None) if execution else None,
                             "fill_side": getattr(execution, "side", None) if execution else None,
-                            "fill_cumQty": getattr(execution, "cumQty", None) if execution else None,
-                            "fill_avgPrice": getattr(execution, "avgPrice", None) if execution else None,
+                            "fill_cumQty": to_float(getattr(execution, "cumQty", None)) if execution else None,
+                            "fill_avgPrice": to_float(getattr(execution, "avgPrice", None)) if execution else None,
                             # Commission details
-                            "fill_commission": getattr(commission_report, "commission", None) if commission_report else None,
+                            "fill_commission": to_float(commission_and_fees(commission_report)),
                             "fill_commissionCurrency": getattr(commission_report, "currency", None) if commission_report else None,
-                            "fill_realizedPNL": getattr(commission_report, "realizedPNL", None) if commission_report else None,
+                            "fill_realizedPNL": to_float(getattr(commission_report, "realizedPNL", None)) if commission_report else None,
                             # Contract details (conId for joining back to contract info)
                             "fill_contract_conId": getattr(fill_contract, "conId", None) if fill_contract else None,
                         }
