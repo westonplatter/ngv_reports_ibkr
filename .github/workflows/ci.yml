@@ -28,3 +28,58 @@ jobs:
       - name: Test with pytest
         run: |
           uv run pytest
+
+  # ib_async v3 is not on PyPI yet. Build it from the upstream next-protobuf
+  # branch and run the suite against it. The protobuf bindings
+  # (ib_async/_pb/) are not in git, so generate them before building the wheel.
+  ci-ib-async-v3:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # ib_async v3 requires Python 3.11 or later.
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check out ib_async v3 (next-protobuf)
+        uses: actions/checkout@v4
+        with:
+          repository: ib-api-reloaded/ib_async
+          ref: next-protobuf
+          path: .ib_async_v3
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }} 3.13
+
+      - name: Build ib_async v3 wheel
+        working-directory: .ib_async_v3
+        env:
+          # grpcio-tools has no wheels for the newest Python. Upstream CI
+          # generates the bindings on 3.13 too; the output is plain Python.
+          UV_PYTHON: "3.13"
+          UV_FROZEN: "1"
+        run: |
+          git log -1 --format='ib_async next-protobuf at %H (%cd)'
+          uv run --group protos python scripts/generate_protos.py
+          uv build --wheel --out-dir ../.ib_async_v3_dist
+
+      - name: Install dependencies with ib_async v3
+        run: |
+          uv sync --group dev
+          # Replace the locked v2 with the v3 wheel. --no-sync below keeps uv
+          # from reinstalling v2 from the lock.
+          uv pip install .ib_async_v3_dist/*.whl
+          uv run --no-sync python -c "import ib_async; print('ib_async', ib_async.__version__)"
+
+      - name: Test with pytest
+        run: |
+          uv run --no-sync pytest --ignore=.ib_async_v3

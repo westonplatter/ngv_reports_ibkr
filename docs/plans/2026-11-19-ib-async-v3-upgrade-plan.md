@@ -1,9 +1,9 @@
 # Upgrade ib_async v2 to v3 - Plan
 
-- **Status:** IN PROGRESS. Steps 1 and 2 of "Order of work" are done: `ib-async>=2.1,<3`
-  is declared, and the code runs on both v2 and v3 through
-  `ngv_reports_ibkr/ib_async_compat.py`. Step 3 waits for v3 on PyPI (latest is
-  2.1.0).
+- **Status:** IN PROGRESS. Steps 1 to 3 of "Order of work" are done: `ib-async>=2.1,<3`
+  is declared, the code runs on both v2 and v3 through
+  `ngv_reports_ibkr/ib_async_compat.py`, and CI tests v3 built from
+  `next-protobuf`. v3 is not on PyPI yet (latest is 2.1.0).
 - **Source:** the upstream
   [v3 migration guide](https://github.com/ib-api-reloaded/ib_async/blob/next-protobuf/docs/migration/v3.md),
   plus a read of v3's `flexreport.py` and `util.py` on the `next-protobuf` branch.
@@ -147,10 +147,10 @@ the expand step is the cleaner fix.
 2. Make the changes in sections 1 to 5 so they work on both versions (`df`
    override, float conversion, `commissionAndFees` fallback, `gen_json`), with the
    new tests.
-3. Once v3 is on PyPI, add a CI job that installs `ib-async>=3,<4` on Python 3.11
-   or later. A git install of the `next-protobuf` branch won't work: its protobuf
-   bindings (`ib_async/_pb/`) are generated at release time and are not in git.
-4. Widen the bound to `ib-async>=2.1,<4`. This supports both versions with no
+3. Add a CI job (`ci-ib-async-v3`) that tests against v3 on Python 3.11 or later.
+   Until v3 is on PyPI, it builds the wheel from the upstream `next-protobuf`
+   branch, generating the protobuf bindings (`ib_async/_pb/`, not in git) first.
+4. Once that job passes, widen the bound to `ib-async>=2.1,<4`. This supports both versions with no
    breaking change: Python 3.10 resolves v2, and 3.11 or later can resolve v3.
 5. To drop v2 later: bump to `ib-async>=3,<4`, raise `requires-python` (section 6),
    remove the v2 fallbacks, re-capture the snapshots, and release as a major
