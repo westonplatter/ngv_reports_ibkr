@@ -1,9 +1,9 @@
 # Upgrade ib_async v2 to v3 - Plan
 
-- **Status:** IN PROGRESS. Steps 1 to 3 of "Order of work" are done: `ib-async>=2.1,<3`
-  is declared, the code runs on both v2 and v3 through
-  `ngv_reports_ibkr/ib_async_compat.py`, and CI tests v3 built from
-  `next-protobuf`. v3 is not on PyPI yet (latest is 2.1.0).
+- **Status:** IN PROGRESS. Steps 1 to 4 of "Order of work" are done: the code runs on
+  both v2 and v3 through `ngv_reports_ibkr/ib_async_compat.py`, CI tests v3 built
+  from `next-protobuf`, and `ib-async>=2.1,<4` is declared. v3 is not on PyPI yet
+  (latest is 2.1.0).
 - **Source:** the upstream
   [v3 migration guide](https://github.com/ib-api-reloaded/ib_async/blob/next-protobuf/docs/migration/v3.md),
   plus a read of v3's `flexreport.py` and `util.py` on the `next-protobuf` branch.

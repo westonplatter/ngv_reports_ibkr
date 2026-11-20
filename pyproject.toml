@@ -8,7 +8,7 @@ name = "ngv_reports_ibkr"
 description = "IBKR report data via ib_async"
 authors = [{ name = "Weston Platter", email = "westonplatter+ngv@gmail.com" }]
 dependencies = [
-  "ib-async>=2.1,<3",
+  "ib-async>=2.1,<4",
   "loguru",
   "pandas",
   "numpy",
