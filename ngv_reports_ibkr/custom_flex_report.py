@@ -5,6 +5,8 @@ import pandera.pandas as pa
 from ib_async.flexreport import FlexReport
 from loguru import logger
 
+from ngv_reports_ibkr.ib_async_compat import pandas_df
+
 from ngv_reports_ibkr.schemas.ibkr_flex_report import (
     validate_ibkr_flex_report_trades_lazy,
 )
@@ -12,6 +14,10 @@ from ngv_reports_ibkr.transforms import parse_date_series, parse_datetime_series
 
 
 class CustomFlexReport(FlexReport):
+    def df(self, topic: str, parseNumbers: bool = True) -> pd.DataFrame | None:
+        """Return a topic as a pandas DataFrame on ib_async v2 and v3 (v3's own ``df`` returns polars)."""
+        return pandas_df(self.extract(topic, parseNumbers))
+
     def account_ids(self) -> List[str]:
         return list(self.df("AccountInformation")["accountId"].unique())
 
@@ -85,7 +91,13 @@ class CustomFlexReport(FlexReport):
         return df.query("openCloseIndicator == 'C'").copy()
 
     def orders_by_account_id(self, account_id: str) -> pd.DataFrame:
-        return self.df("Order").query("accountId == @account_id").copy()
+        df = self.df("Order")
+        if (df is None) or (len(df.index) == 0):
+            return None
+        return df.query("accountId == @account_id").copy()
 
     def change_in_nav_by_account_id(self, account_id: str) -> pd.DataFrame:
-        return self.df("ChangeInNAV").query("accountId == account_id").copy()
+        df = self.df("ChangeInNAV")
+        if (df is None) or (len(df.index) == 0):
+            return None
+        return df.query("accountId == @account_id").copy()

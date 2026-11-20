@@ -1447,7 +1447,7 @@ wheels = [
 name = "ngv-reports-ibkr"
 source = { editable = "." }
 dependencies = [
-    { name = "ib-async" },
+    { name = "ib-async", specifier = ">=2.1,<3" },
     { name = "loguru" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -1484,7 +1484,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "ib-async" },
+    { name = "ib-async", specifier = ">=2.1,<3" },
     { name = "loguru" },
     { name = "numpy" },
     { name = "pandas" },

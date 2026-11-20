@@ -20,7 +20,8 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
-from ib_async import util
+
+from ngv_reports_ibkr.ib_async_compat import pandas_df
 
 # Paths
 SNAPSHOTS_DIR = Path(__file__).parent.parent / "data" / "snapshots"
@@ -49,7 +50,7 @@ def capture_tws_trade_by_symbol(trades_snapshot_path: Path, symbol: str) -> pd.D
     print(f"Loaded {len(trades)} trades from {trades_snapshot_path.name}")
 
     # Convert to DataFrame and expand
-    df = util.df(trades)
+    df = pandas_df(trades)
     df = expand_all_trade_columns(df)
     df = expand_fills_and_logs(df, fills_col="fills", log_col="log")
     df = Transforms.filter_to_executions(df)
@@ -274,7 +275,7 @@ if __name__ == "__main__":
             trades = pickle.load(f)
 
         if trades:
-            df = util.df(trades)
+            df = pandas_df(trades)
             if "contract" in df.columns:
                 symbols = df["contract"].apply(lambda c: getattr(c, "symbol", None) if c else None)
                 print(f"Symbols in snapshot: {symbols.unique().tolist()}")
